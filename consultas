@@ -1,0 +1,6 @@
+SELECT (COUNT(?p) as ?conteo) WHERE {
+  ?p wdt:P31 wd:Q11424.
+}
+
+
+224509
