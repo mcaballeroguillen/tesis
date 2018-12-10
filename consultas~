@@ -6,7 +6,7 @@ SELECT (COUNT(?p) as ?conteo) WHERE {
 224509
 
  ssh mcaballe@dichato.dcc.uchile.cl
- sftp  mcaballe@dichato.dcc.uchile.cl 
+ sftp  -oPort=220 mcaballe@dichato.dcc.uchile.cl 
 
 /u/m/mag/2017/mcaballe/Descargas/wikidata-20181123-truthy-BETA.nt.gz
 
