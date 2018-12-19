@@ -67,7 +67,7 @@ public class Prueba {
 			 tripleta -> new Tuple2<String,String>(tripleta._1(),tripleta._3())
 			 );
 	 
-	
+	 JavaPairRDD<String, Iterable<String>> pars =  pardepelis.groupByKey();
 			 
 	 pardepelis.saveAsTextFile("/home/marco/WIKIDATA/result");
 	 context.close();
