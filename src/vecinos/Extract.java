@@ -32,14 +32,13 @@ public class Extract {
 		for (Node[] nx : nxp){
 			teplimit--;
 			
-			System.out.println(nx[1].toString()+"  " +  nx[2].toString());
+			
 			if(nx[1].toString().equals("<http://www.wikidata.org/prop/direct/P31>") && nx[2].toString().equals(ObjectType)){
 				this.objects.add(nx[0].toString());
 			}
 			if(teplimit<=0){break;}
 		}
 		in.close();
-		System.out.println(this.objects.size());
 		this.writeFile(OutFile);
 	}
 

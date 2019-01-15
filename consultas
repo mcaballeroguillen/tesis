@@ -3,6 +3,11 @@ SELECT (COUNT(?p) as ?conteo) WHERE {
 }
 
 
+SELECT (COUNT(?v) as ?conteo) WHERE {
+  wd:Q185884 ?p ?v.
+  wd:Q738544 ?k ?v.
+}
+
 224509
 
 
