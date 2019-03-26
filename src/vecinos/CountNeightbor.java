@@ -25,7 +25,7 @@ public class CountNeightbor {
 		String master = "local[*]";
 		 
 		 SparkConf conf = new SparkConf()
-					.setAppName(Prueba.class.getName())
+					.setAppName(CountNeightbor.class.getName())
 					.setMaster(master);
 			JavaSparkContext context = new JavaSparkContext(conf);
 			

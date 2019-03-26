@@ -14,7 +14,9 @@ SELECT (COUNT(?v) as ?conteo) WHERE {
 223620
 
  ssh -p 332 mcaballero@milenio.dcc.uchile.cl
- sftp  mcaballe@dichato.dcc.uchile.cl 
+ sftp -oPort=332 mcaballe@dichato.dcc.uchile.cl 
+ 
+  sftp  -oPort=220 uhadoop@cm.dcc.uchile.cl 
 
 ssh -i llaves.pub -p 332 mcaballero@milenio.dcc.uchile.cl
 
@@ -29,4 +31,13 @@ ssh -i llaves.pub -p 332 mcaballero@milenio.dcc.uchile.cl
 	
 	 }
 	 
-	 
+ Servidor
+ 	 
+/home/mcaballero/datos/wikidata-20181123-truthy-BETA.nt.gz
+/home/mcaballero/result.txt
+/home/mcaballero/result
+Compu
+
+/home/marco/WIKIDATA/wikidata-20181123-truthy-BETA.nt.gz
+/home/marco/WIKIDATA/result.txt
+/home/marco/WIKIDATA/result
