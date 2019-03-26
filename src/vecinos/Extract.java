@@ -54,7 +54,7 @@ public class Extract {
 		for (Node[] nx : nxp){
 			templimit--;
 			if(this.objects.contains(nx[0].toString())){
-				 templimit--;
+				 //templimit--;
 				 out.write(nx[0].toString().getBytes());
 				 out.write('\t');
 				 out.write(nx[1].toString().getBytes());
