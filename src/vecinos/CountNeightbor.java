@@ -9,18 +9,26 @@ import org.apache.spark.api.java.JavaSparkContext;
 
 import scala.Tuple2;
 import scala.Tuple3;
-/*
- * class that counts the common neighbors
+/**
+ * 
+ * @author Marco Caballero 
+ *  class that counts the common neighbors
+ *
  */
+
  
 public class CountNeightbor {
 	protected String File;
+	/**
+	 * 
+	 * @param File: File to search
+	 */
 	public CountNeightbor(String File){
 		this.File=File;
 	}
-	/*
-	 * count
-	 */
+/**
+ * Count
+ */
 	public void count(){
 		String master = "local[*]";
 		 
@@ -75,12 +83,14 @@ public class CountNeightbor {
 					
 					);
 			
-			JavaPairRDD<Integer,Tuple2<String,String>> trip3 = trip2.mapToPair(f->f.swap());
+			JavaPairRDD<Tuple2<String,String>,Integer> trip3 = trip2.filter(f->f._1._1.equals(f._1._2)== false);
 			
-			JavaPairRDD<Integer,Tuple2<String,String>> trip4 = trip3.sortByKey(false);
+			JavaPairRDD<Integer,Tuple2<String,String>> trip4 = trip3.mapToPair(f->f.swap());
+			
+			JavaPairRDD<Integer,Tuple2<String,String>> trip5 = trip4.sortByKey(false);
 			
 			
-			trip4.saveAsTextFile("/home/marco/WIKIDATA/result");
+			trip5.saveAsTextFile("/home/marco/WIKIDATA/result");
 			context.close();
 			
 			

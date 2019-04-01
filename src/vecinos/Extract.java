@@ -10,18 +10,33 @@ import java.util.zip.GZIPInputStream;
 
 import org.semanticweb.yars.nx.Node;
 import org.semanticweb.yars.nx.parser.NxParser;
-
+/**
+ * 
+ * @author Marco Caballero
+ * 
+ *Class that extracts tuples of a specific type
+ */
 public class Extract {
 	protected Set<String> objects; 
 	protected String File;
 	int limit;
+	/**
+	 * 
+	 * @param FileIn: Entry file
+	 * @param limit: Limit of the search
+	 */
 	public Extract(String FileIn, int limit){
 		objects = new TreeSet<>();
 		this.File=FileIn;
 		this.limit = limit;
 	}
 	
-	
+	/**
+	 * Method that looks for tuples with a type within the limit
+	 * @param OutFile: File where the results will be saved  
+	 * @param ObjectType: Class or type to be searched
+	 * @throws IOException: File handling exceptions
+	 */
 	public void FindObjectes (String OutFile,String ObjectType) throws IOException{
 		int teplimit=this.limit;
 		InputStream in = null;
@@ -41,7 +56,12 @@ public class Extract {
 		in.close();
 		this.writeFile(OutFile);
 	}
-
+    
+	/**
+	 * 
+	 * @param OutFile: File where the tuples will be saved, with a format  (s \t p \t o)
+	 * @throws IOException: File handling exceptions
+	 */
 	private void writeFile(String OutFile) throws IOException {
 		int templimit = this.limit;
 		InputStream in = null;
