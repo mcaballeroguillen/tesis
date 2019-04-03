@@ -14,7 +14,7 @@ SELECT (COUNT(?v) as ?conteo) WHERE {
 223620
 
  ssh -p 332 mcaballero@milenio.dcc.uchile.cl
- sftp -oPort=332 mcaballe@dichato.dcc.uchile.cl 
+ sftp -oPort=332 mcaballero@milenio.dcc.uchile.cl 
  
   sftp  -oPort=220 uhadoop@cm.dcc.uchile.cl 
 
@@ -25,7 +25,7 @@ ssh -i llaves.pub -p 332 mcaballero@milenio.dcc.uchile.cl
 /home/marco/WIKIDATA/wikidata-20181123-truthy-BETA.nt.gz
 
  for (Node[] nx : nxp){
-		 if(nx[1].toString().equals("<http://www.wikidata.org/prop/direct/P31>")  && nx[2].toString().equals("<http://www.wikidata.org/entity/Q11424>") ){
+		 if(nx[1].toString().equals("<http://www.wikidata.org/prop/direct/P31>")  && nx[2].toeiString().equals("<http://www.wikidata.org/entity/Q11424>") ){
 			 movies.add(nx);
 			 }
 	

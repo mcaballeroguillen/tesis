@@ -90,7 +90,7 @@ public class CountNeightbor {
 			JavaPairRDD<Integer,Tuple2<String,String>> trip5 = trip4.sortByKey(false);
 			
 			
-			trip5.saveAsTextFile("/home/marco/WIKIDATA/result");
+			trip5.saveAsTextFile("/home/mcaballero/result");
 			context.close();
 			
 			

@@ -44,14 +44,16 @@ public class Extract {
 		in = new GZIPInputStream(in);
 		NxParser nxp = new NxParser();
 		nxp.parse(in);
+		
 		for (Node[] nx : nxp){
-			teplimit--;
-			
-			
+			if(this.limit>0){
+				teplimit--;
+				if(teplimit<=0){break;}
+			}
 			if(nx[1].toString().equals("<http://www.wikidata.org/prop/direct/P31>") && nx[2].toString().equals(ObjectType)){
 				this.objects.add(nx[0].toString());
 			}
-			if(teplimit<=0){break;}
+			
 		}
 		in.close();
 		this.writeFile(OutFile);
@@ -71,8 +73,12 @@ public class Extract {
 		in = new GZIPInputStream(in);
 		NxParser nxp = new NxParser();
 		nxp.parse(in);
+		
 		for (Node[] nx : nxp){
-			templimit--;
+			if(this.limit>0){
+				templimit--;
+				if(templimit<=0){break;}
+			}
 			if(this.objects.contains(nx[0].toString())){
 				 //templimit--;
 				 out.write(nx[0].toString().getBytes());
@@ -84,7 +90,7 @@ public class Extract {
 				 
 				 
 			}
-			if(templimit<=0){break;}
+			
 		}
 		
 		
