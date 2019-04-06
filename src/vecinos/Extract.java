@@ -46,7 +46,7 @@ public class Extract {
 		nxp.parse(in);
 		
 		for (Node[] nx : nxp){
-			if(this.limit>0){
+			if(this.limit>0){   //If the limit is 0,  means that  should search in all wikidata.
 				teplimit--;
 				if(teplimit<=0){break;}
 			}
@@ -75,12 +75,12 @@ public class Extract {
 		nxp.parse(in);
 		
 		for (Node[] nx : nxp){
-			if(this.limit>0){
+			if(this.limit>0){ //If the limit is 0,  means that  should search in all wikidata
 				templimit--;
 				if(templimit<=0){break;}
 			}
 			if(this.objects.contains(nx[0].toString())){
-				 //templimit--;
+				 
 				 out.write(nx[0].toString().getBytes());
 				 out.write('\t');
 				 out.write(nx[1].toString().getBytes());
