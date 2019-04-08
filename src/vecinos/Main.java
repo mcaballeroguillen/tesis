@@ -11,9 +11,9 @@ public class Main {
 				System.exit(-1);
 			}
 			System.out.println("Star");
-			Extract extractor = new  Extract("/home/mcaballero/datos/wikidata-20181123-truthy-BETA.nt.gz",Integer.valueOf(Integer.valueOf(args[0])));
-			extractor.FindObjectes("/home/mcaballero/result.txt","<http://www.wikidata.org/entity/Q11424>");
-			CountNeightbor contador = new CountNeightbor("/home/mcaballero/result.txt");
+			Extract extractor = new  Extract("/u/m/mag/2017/mcaballe/WIKIDATA/wikidata-20181123-truthy-BETA.nt.gz",Integer.valueOf(Integer.valueOf(args[0])));
+			extractor.FindObjectes("/u/m/mag/2017/mcaballe/WIKIDATA/result.txt","<http://www.wikidata.org/entity/Q11424>");
+			CountNeightbor contador = new CountNeightbor("/u/m/mag/2017/mcaballe/WIKIDATA/result.txt");
 			contador.count();
 			System.out.println("End");
 		}catch (Throwable e){

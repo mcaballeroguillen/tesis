@@ -29,6 +29,7 @@ public class Extract {
 		objects = new TreeSet<>();
 		this.File=FileIn;
 		this.limit = limit;
+		
 	}
 	
 	/**
@@ -57,6 +58,7 @@ public class Extract {
 		}
 		in.close();
 		this.writeFile(OutFile);
+		
 	}
     
 	/**

@@ -1,6 +1,7 @@
 package vecinos;
 
 import java.util.ArrayList;
+import java.util.TreeSet;
 
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
@@ -9,6 +10,7 @@ import org.apache.spark.api.java.JavaSparkContext;
 
 import scala.Tuple2;
 import scala.Tuple3;
+
 /**
  * 
  * @author Marco Caballero 
@@ -60,10 +62,31 @@ public class CountNeightbor {
 			 */
 			JavaPairRDD<String, Iterable<String>> pars =  pardepelisinver.groupByKey();
 			
+			/*
+			 * Count negibors and eliminate very common neighbors.
+			 * 
+			 */
 			
-			JavaPairRDD<Tuple2<String,String>,Integer> trip1 = pars.flatMapToPair(
+			JavaPairRDD<String,Iterable<String>> count = pars.flatMapToPair(
+					tuple ->{
+						ArrayList<Tuple2<String,Iterable<String>>> setva = new ArrayList<Tuple2<String,Iterable<String>>>();
+						Integer co=0;
+						for(String v1:tuple._2){
+							co=co+1;
+							if(co>100000){break;}
+						}
+						if(co<100000){
+							setva.add(tuple);
+						}
+						return setva.iterator();
+					}
+					);
+			
+					
+			JavaPairRDD<Tuple2<String,String>,Integer> trip1 = count.flatMapToPair(
 					parss ->{
 						ArrayList<Tuple2<Tuple2<String,String>,Integer>> s= new ArrayList<Tuple2<Tuple2<String,String>,Integer>> ();  
+						
 						for(String v1: parss._2){
 							for(String v2: parss._2){
 							Tuple2<String,String>s1 = new Tuple2<String,String>(v1,v2);
@@ -90,7 +113,7 @@ public class CountNeightbor {
 			JavaPairRDD<Integer,Tuple2<String,String>> trip5 = trip4.sortByKey(false);
 			
 			
-			trip5.saveAsTextFile("/home/mcaballero/result");
+			trip5.saveAsTextFile("/u/m/mag/2017/mcaballe/WIKIDATA/resutl");
 			context.close();
 			
 			
