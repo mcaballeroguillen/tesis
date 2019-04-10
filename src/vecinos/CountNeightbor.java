@@ -1,7 +1,8 @@
 package vecinos;
 
+import java.io.FileOutputStream;
 import java.util.ArrayList;
-import java.util.TreeSet;
+
 
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
@@ -20,13 +21,13 @@ import scala.Tuple3;
 
  
 public class CountNeightbor {
-	protected String File;
+	protected String directorio;
 	/**
 	 * 
 	 * @param File: File to search
 	 */
 	public CountNeightbor(String File){
-		this.File=File;
+		this.directorio=File;
 	}
 /**
  * Count
@@ -39,10 +40,12 @@ public class CountNeightbor {
 					.setMaster(master);
 			JavaSparkContext context = new JavaSparkContext(conf);
 			
-			JavaRDD<String> inputRDD = context.textFile(this.File);
+			
+			JavaRDD<String> inputRDD = context.textFile(this.directorio+"/result.txt");
 			/*
 			 * Read tuples
 			 */
+			
 			JavaRDD<Tuple3<String,String,String>> moviesnt = inputRDD.map(
 					 line -> new Tuple3<String,String,String>(
 							 line.split("\t")[0],line.split("\t")[1],line.split("\t")[2]
@@ -83,6 +86,7 @@ public class CountNeightbor {
 					);
 			
 					
+			
 			JavaPairRDD<Tuple2<String,String>,Integer> trip1 = count.flatMapToPair(
 					parss ->{
 						ArrayList<Tuple2<Tuple2<String,String>,Integer>> s= new ArrayList<Tuple2<Tuple2<String,String>,Integer>> ();  
@@ -101,19 +105,22 @@ public class CountNeightbor {
 					
 					);	
 			
-			JavaPairRDD<Tuple2<String,String>,Integer> trip2 = trip1.reduceByKey(
+
+			JavaPairRDD<Tuple2<String,String>,Integer> trip22 = trip1.reduceByKey(
 					(a,b)-> a+b
 					
 					);
 			
-			JavaPairRDD<Tuple2<String,String>,Integer> trip3 = trip2.filter(f->f._1._1.equals(f._1._2)== false);
+			JavaPairRDD<Tuple2<String,String>,Integer> trip3 = trip22.filter(f->f._1._1.equals(f._1._2)== false);
 			
 			JavaPairRDD<Integer,Tuple2<String,String>> trip4 = trip3.mapToPair(f->f.swap());
 			
 			JavaPairRDD<Integer,Tuple2<String,String>> trip5 = trip4.sortByKey(false);
+			trip5.saveAsTextFile(this.directorio+"/result");
+					 
 			
+			trip1.saveAsTextFile(this.directorio+"/tuples");
 			
-			trip5.saveAsTextFile("/u/m/mag/2017/mcaballe/WIKIDATA/resutl");
 			context.close();
 			
 			
