@@ -10,6 +10,7 @@ SELECT (COUNT(?v) as ?conteo) WHERE {
 
 224509
 
+27 gb
 
 223620
 

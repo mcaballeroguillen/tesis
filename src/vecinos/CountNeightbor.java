@@ -76,9 +76,9 @@ public class CountNeightbor {
 						Integer co=0;
 						for(String v1:tuple._2){
 							co=co+1;
-							if(co>100000){break;}
+							if(co>1000){break;}
 						}
-						if(co<100000){
+						if(co<1000){
 							setva.add(tuple);
 						}
 						return setva.iterator();
@@ -93,9 +93,13 @@ public class CountNeightbor {
 						
 						for(String v1: parss._2){
 							for(String v2: parss._2){
+							if(v1.equals(v2)){continue;}
+							try{
 							Tuple2<String,String>s1 = new Tuple2<String,String>(v1,v2);
 							Tuple2<Tuple2<String,String>,Integer> resp = new Tuple2<Tuple2<String,String>,Integer>(s1,1);
-							s.add(resp);
+							s.add(resp);}catch(Exception e){
+								return s.iterator();
+							}
 							}
 							
 						}
