@@ -1,8 +1,8 @@
 package vecinos;
 
-import java.io.FileOutputStream;
-import java.util.ArrayList;
 
+import java.util.ArrayList;
+import java.util.Map;
 
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
@@ -38,7 +38,8 @@ public class CountNeightbor {
 		 SparkConf conf = new SparkConf()
 					.setAppName(CountNeightbor.class.getName())
 					.setMaster(master);
-			JavaSparkContext context = new JavaSparkContext(conf);
+			
+	     	 JavaSparkContext context = new JavaSparkContext(conf);
 			
 			
 			JavaRDD<String> inputRDD = context.textFile(this.directorio+"/result.txt");
@@ -114,16 +115,31 @@ public class CountNeightbor {
 					(a,b)-> a+b
 					
 					);
-			
+			/**
+			 * Eliminar pares (a,a)
+			 */
 			JavaPairRDD<Tuple2<String,String>,Integer> trip3 = trip22.filter(f->f._1._1.equals(f._1._2)== false);
-			
+			/*
+			 * Cambiar para ordenar
+			 */
 			JavaPairRDD<Integer,Tuple2<String,String>> trip4 = trip3.mapToPair(f->f.swap());
-			
+			/*
+			 * Ordenar
+			 */
 			JavaPairRDD<Integer,Tuple2<String,String>> trip5 = trip4.sortByKey(false);
-			trip5.saveAsTextFile(this.directorio+"/result");
-					 
+			/*
+			 * Contar por llave
+			 */
 			
-			trip1.saveAsTextFile(this.directorio+"/tuples");
+			JavaPairRDD<Integer, Integer> trip7 = trip4.aggregateByKey(1,
+					 (a,b) ->{return a+1;}
+					, (a,b)->{return a+b;});
+			
+			
+			
+			trip5.saveAsTextFile(this.directorio+"/result");
+			trip7.saveAsTextFile(this.directorio+"/dis_frec");
+					
 			
 			context.close();
 			
