@@ -1,8 +1,6 @@
 package vecinos;
 
-
 import java.util.ArrayList;
-import java.util.Map;
 
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
@@ -12,21 +10,13 @@ import org.apache.spark.api.java.JavaSparkContext;
 import scala.Tuple2;
 import scala.Tuple3;
 
-/**
- * 
- * @author Marco Caballero 
- *  class that counts the common neighbors
- *
- */
-
- 
-public class CountNeightbor {
+public class CountNeightbor_1 {
 	protected String directorio;
 	/**
 	 * 
 	 * @param File: File to search
 	 */
-	public CountNeightbor(String File){
+	public CountNeightbor_1(String File){
 		this.directorio=File;
 	}
 /**
@@ -54,26 +44,26 @@ public class CountNeightbor {
 					 
 					 );
 			/*
-			 * Create pair (neighbor1, neighbor2)
+			 * Create pair (?s,{?p,?o})
 			 */
-			JavaPairRDD<String,String> pardepelis= moviesnt.mapToPair(
-					 tripleta -> new Tuple2<String,String>(tripleta._1(),tripleta._3())
+			JavaPairRDD<String,Tuple2<String,String>> pardepelis= moviesnt.mapToPair(
+					 tripleta -> new Tuple2<String,Tuple2<String,String>>(tripleta._1(),new Tuple2<String,String>(tripleta._2(),tripleta._3()))
 					 );
 			
-			JavaPairRDD<String,String> pardepelisinver= pardepelis.mapToPair(f->f.swap());
+			JavaPairRDD<Tuple2<String, String>, String> pardepelisinver= pardepelis.mapToPair(f->f.swap());
 			/*
 			 * Agrupate by neighbor1
 			 */
-			JavaPairRDD<String, Iterable<String>> pars =  pardepelisinver.groupByKey();
+			JavaPairRDD<Tuple2<String, String>, Iterable<String>> pars =  pardepelisinver.groupByKey();
 			
 			/*
 			 * Count negibors and eliminate very common neighbors.
 			 * 
 			 */
 			
-			JavaPairRDD<String,Iterable<String>> count = pars.flatMapToPair(
+			JavaPairRDD<Tuple2<String, String>, Iterable<String>> count = pars.flatMapToPair(
 					tuple ->{
-						ArrayList<Tuple2<String,Iterable<String>>> setva = new ArrayList<Tuple2<String,Iterable<String>>>();
+						ArrayList<Tuple2<Tuple2<String, String>, Iterable<String>>> setva = new ArrayList<Tuple2<Tuple2<String, String>, Iterable<String>>>();
 						Integer co=0;
 						for(String v1:tuple._2){
 							co=co+1;
@@ -147,6 +137,4 @@ public class CountNeightbor {
 			
 					
 	}
-	
-	
 }
