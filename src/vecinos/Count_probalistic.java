@@ -12,6 +12,7 @@ import scala.Tuple3;
 
 public class Count_probalistic {
 	protected String directorio;
+	protected long Numberofsubjects;
 	/**
 	 * 
 	 * @param File: File to search
@@ -49,7 +50,14 @@ public class Count_probalistic {
 			JavaPairRDD<String,Tuple2<String,String>> pardepelis= moviesnt.mapToPair(
 					 tripleta -> new Tuple2<String,Tuple2<String,String>>(tripleta._1(),new Tuple2<String,String>(tripleta._2(),tripleta._3()))
 					 );
+			/*
+			 * Count the number of Subjects 
+			 */
+			Numberofsubjects = pardepelis.groupByKey().count();
 			
+			/*
+			 * swap
+			 */
 			JavaPairRDD<Tuple2<String, String>, String> pardepelisinver= pardepelis.mapToPair(f->f.swap());
 			/*
 			 * Agrupate by predicate and object
@@ -88,7 +96,7 @@ public class Count_probalistic {
 							if(v1.equals(v2)){continue;}
 							try{
 							Tuple2<String,String>s1 = new Tuple2<String,String>(v1,v2);
-							Double a=  1.0/ (double)parss._2();
+							Double a= ((double)parss._2()-1.0)/((double)this.Numberofsubjects-1.0);
 							Tuple2<Tuple2<String,String>,Double> resp = new Tuple2<Tuple2<String,String>,Double>(s1,a);
 							s.add(resp);}catch(Exception e){
 								return s.iterator();
@@ -102,18 +110,21 @@ public class Count_probalistic {
 					
 					);	
 			
-
+			
+			
 			JavaPairRDD<Tuple2<String,String>,Double> trip22 = trip1.reduceByKey(
 					(a,b)-> a*b
 					
 					);
-			/**
-			 * Eliminar pares (a,a)
-			 */
-			
-			JavaPairRDD<Tuple2<String,String>,Double> trip23 = trip22.aggregateByKey(0.0, 
-					(a,b) -> 1-b, 
-					(a,b)->a+b);
+	
+			JavaPairRDD<Tuple2<String,String>,Double> trip23 = trip22.flatMapToPair(
+					parss->{
+						ArrayList<Tuple2<Tuple2<String,String>,Double>> s= new ArrayList<Tuple2<Tuple2<String,String>,Double>> ();
+						Tuple2<Tuple2<String,String>,Double> t = new Tuple2<Tuple2<String,String>,Double>(parss._1,1.0-parss._2());
+						s.add(t);
+						return s.iterator();
+						
+					});
 			
 			
 			JavaPairRDD<Tuple2<String,String>,Double> trip3 = trip23.filter(f->f._1._1.equals(f._1._2)== false);
@@ -124,7 +135,7 @@ public class Count_probalistic {
 			/*
 			 * Ordenar
 			 */
-			JavaPairRDD<Double,Tuple2<String,String>> trip5 = trip4.sortByKey(true);
+			JavaPairRDD<Double,Tuple2<String,String>> trip5 = trip4.sortByKey(false);
 			/*
 			 * Contar por llave
 			 */

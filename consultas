@@ -25,12 +25,8 @@ ssh -i llaves.pub -p 332 mcaballero@milenio.dcc.uchile.cl
 
 /home/marco/WIKIDATA/wikidata-20181123-truthy-BETA.nt.gz
 
- for (Node[] nx : nxp){
-		 if(nx[1].toString().equals("<http://www.wikidata.org/prop/direct/P31>")  && nx[2].toeiString().equals("<http://www.wikidata.org/entity/Q11424>") ){
-			 movies.add(nx);
-			 }
-	
-	 }
+
+
 	 
  Servidor
  	 
@@ -51,66 +47,4 @@ dcc
 
 "<http://www.wikidata.org/entity/Q11424>"
 
-
-JavaPairRDD<Tuple2<String,String>,Integer> trip1 = count.flatMapToPair(
-					parss ->{
-						ArrayList<Tuple2<Tuple2<String,String>,Integer>> s= new ArrayList<Tuple2<Tuple2<String,String>,Integer>> ();  
-						
-						for(String v1: parss._2){
-							for(String v2: parss._2){
-							Tuple2<String,String>s1 = new Tuple2<String,String>(v1,v2);
-							Tuple2<Tuple2<String,String>,Integer> resp = new Tuple2<Tuple2<String,String>,Integer>(s1,1);
-							s.add(resp);
-							}
-							
-						}
-						return s.iterator();
-					}
-					
-					
-					);	
-					
-					
-					
-						FileOutputStream out = null;
-						out = new  FileOutputStream("/home/marco/WIKIDATA/tuples.txt");
-						ArrayList<Tuple2<Tuple2<String,String>,Integer>> s= new ArrayList<Tuple2<Tuple2<String,String>,Integer>> ();  
-						Integer cou=0;
-						System.out.println(this.directorio+"/result.txt");
-						for(String v1: parss._2){
-							for(String v2: parss._2){
-								 Tuple2<String,String>s1 = new Tuple2<String,String>(v1,v2);
-								 Tuple2<Tuple2<String,String>,Integer> resp = new Tuple2<Tuple2<String,String>,Integer>(s1,1);
-								 s.add(resp);								
-								 cou=cou+1;
-								 out.write(v1.toString().getBytes());
-								 out.write('\t');
-								 out.write(v2.toString().getBytes());
-								 out.write('\t');
-								 out.write("1".getBytes());
-								 out.write('\n');
-								 
-							
-						}
-						}
-						out.close();
-						return s.iterator();
-						
-						
-						
-            JavaRDD<String> inputRDD1 = context.textFile(this.directorio+"/tuples.txt");
-			
-			JavaRDD<Tuple3<String,String,String>> tuples = inputRDD1.map(
-					 line -> new Tuple3<String,String,String>(
-							 line.split("\t")[0],line.split("\t")[1],line.split("\t")[2]
-							 )
-					 
-					 );
-			
-			
-			JavaPairRDD<Tuple2<String,String>,Integer> tuples2 = tuples.mapToPair(
-					tuple -> new Tuple2<Tuple2<String,String>,Integer>(
-							 new Tuple2<String,String>(tuple._1(),tuple._2()), Integer.valueOf(tuple._3())
-							)
-					);
-			
+java -jar -Xms3075m tesis_v3.jar /home/mcaballero/datos/wikidata-20190227-truthy-BETA.nt.gz /home/mcaballero/pruebas/universidades "<http://www.wikidata.org/entity/Q875538>" 0
