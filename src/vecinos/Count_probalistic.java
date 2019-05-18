@@ -1,8 +1,10 @@
 package vecinos;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaDoubleRDD;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
@@ -54,6 +56,11 @@ public class Count_probalistic {
 			 * Count the number of Subjects 
 			 */
 			Numberofsubjects = pardepelis.groupByKey().count();
+			List<Double> as = new ArrayList<Double>();
+			as.add((double)Numberofsubjects);
+					
+			JavaDoubleRDD NumObjes = context.parallelizeDoubles(as);
+			
 			
 			/*
 			 * swap
@@ -63,22 +70,32 @@ public class Count_probalistic {
 			 * Agrupate by predicate and object
 			 */
 			JavaPairRDD<Tuple2<String, String>, Iterable<String>> pars =  pardepelisinver.groupByKey();
+			/*
+			 * Agregate number of subjects
+			 */
 			
+			JavaPairRDD<Tuple2<String, String>, Double> sas = pars.aggregateByKey(NumObjes.first(), 
+					(a,b)->a, 
+					(a,b)->a);
 			/*
 			 * Count negibors and eliminate very common neighbors.
 			 * 
 			 */
 			
-			JavaPairRDD<Iterable<String>,Integer> count = pars.flatMapToPair(
+			
+			JavaPairRDD<Tuple2<String, String>, Tuple2<Iterable<String>, Double>> join = pars.join(sas);
+			
+			JavaPairRDD<Iterable<String>,Tuple2<Integer,Double>> count = join.flatMapToPair(
 					tuple ->{
-						ArrayList<Tuple2<Iterable<String>,Integer>> setva = new ArrayList<Tuple2<Iterable<String>,Integer>>();
+						ArrayList<Tuple2<Iterable<String>,Tuple2<Integer,Double>>> setva = new ArrayList<Tuple2<Iterable<String>,Tuple2<Integer,Double>>>();
 						Integer co=0;
-						for(String v1:tuple._2){
+						for(String v1:tuple._2()._1()){
 							co=co+1;
 							if(co>1000){break;}
 						}
 						if(co<1000){
-							Tuple2<Iterable<String>,Integer> s = new Tuple2<Iterable<String>,Integer>(tuple._2,co);
+							Tuple2<Integer,Double> s1= new Tuple2<Integer,Double>(co,tuple._2()._2()); 
+							Tuple2<Iterable<String>,Tuple2<Integer,Double>> s= new Tuple2<Iterable<String>,Tuple2<Integer,Double>>(tuple._2()._1(),s1);
 							setva.add(s);
 						}
 						return setva.iterator();
@@ -86,6 +103,7 @@ public class Count_probalistic {
 					);
 			
 					
+			
 			
 			JavaPairRDD<Tuple2<String,String>,Double> trip1 = count.flatMapToPair(
 					parss ->{
@@ -96,7 +114,7 @@ public class Count_probalistic {
 							if(v1.equals(v2)){continue;}
 							try{
 							Tuple2<String,String>s1 = new Tuple2<String,String>(v1,v2);
-							Double a= ((double)parss._2()-1.0)/((double)this.Numberofsubjects-1.0);
+							Double a= ((double)parss._2()._1()-1.0)/((parss._2()._2()));
 							Tuple2<Tuple2<String,String>,Double> resp = new Tuple2<Tuple2<String,String>,Double>(s1,a);
 							s.add(resp);}catch(Exception e){
 								return s.iterator();
