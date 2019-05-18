@@ -13,8 +13,10 @@ public class Main {
 			System.out.println("Star");
 			//Extract extractor = new  Extract(args[0],Integer.valueOf(Integer.valueOf(args[3])));
 			//extractor.FindObjectes(args[1]+"/result.txt",args[2]);
-			Count_probalistic contador = new Count_probalistic(args[1]);
-			contador.count();
+			ExtractNeightbor extract1 = new ExtractNeightbor(args[1]);
+			extract1.extract();
+			//ExtractInterseption extract2 = new ExtractInterseption(args[1]);
+			//extract2.extract();
 			
 			System.out.println("End");
 		}catch (Throwable e){

@@ -47,4 +47,6 @@ dcc
 
 "<http://www.wikidata.org/entity/Q11424>"
 
+
+java -jar -Xms3075m contador.jar /home/mcaballero/pruebas/universidades/interseption/part-00000  /home/mcaballero/pruebas/universidades/vecinos/part-00000  /home/mcaballero/pruebas/universidades
 java -jar -Xms3075m tesis_v3.jar /home/mcaballero/datos/wikidata-20190227-truthy-BETA.nt.gz /home/mcaballero/pruebas/universidades "<http://www.wikidata.org/entity/Q875538>" 0
