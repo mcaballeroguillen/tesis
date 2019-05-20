@@ -104,7 +104,6 @@ public class Count_contents {
 			/*
 			 * dejamos ((Id,s1##s2),1)
 			 */
-			
 			JavaPairRDD<Tuple2<String, String>, Integer> corte =  join.mapToPair(
 					tuple ->{
 						/*
@@ -165,7 +164,7 @@ public class Count_contents {
 			 */
 			
 			JavaPairRDD<String,Integer> finals = filter.aggregateByKey(0,
-					(a,b)->1, 
+					(a,b)->a+1, 
 					(a,b)->a+b);
 			/*
 			 * Cambio para orndar
@@ -174,11 +173,13 @@ public class Count_contents {
 			
 			/*
 			 * Ordenar
+			 * 
 			 */
 			
-			//JavaPairRDD<Integer,String> sort = swap1.sortByKey(true);
+			JavaPairRDD<Integer,String> sort = swap1.sortByKey(true);
 			
-			swap1.saveAsTextFile(this.directorio+"/incluidos");
+			
+			sort.saveAsTextFile(this.directorio+"/incluidos");
 			
 			context.close();
 			
