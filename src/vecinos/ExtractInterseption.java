@@ -81,11 +81,11 @@ public class ExtractInterseption {
 								if(s1.equals(s2)){continue;}
 								String par = "";
 								if(s1.compareTo(s2)>0){
-									par= s1+"##"+s2;
+									par= s1.replace(",","" )+"##"+s2.replace(",","" );
 								}else{
-									par=s2+"##"+s1;
+									par=s2.replace(",","" )+"##"+s1.replace(",","" );
 								}
-								String po= tuple._1()._1()+tuple._1()._2();
+								String po= (tuple._1()._1()+tuple._1()._2()).replace(",","");
 								Tuple2<String,String> resp= new Tuple2<String,String>(par,po);
 								list.add(resp);
 								}
@@ -99,15 +99,18 @@ public class ExtractInterseption {
 			 */
 			JavaPairRDD<String,Iterable<String>> agrup= parsubject.groupByKey();
 			/*
-			 * Creamos pares (s1##s2,po##po##po)
+			 * Creamos pares (s1##s2,po##po##po,3)
 			 */
-			JavaPairRDD<String,String> ffinal = agrup.mapValues(
+			JavaPairRDD<String,Tuple2<String,Integer>> ffinal = agrup.mapValues(
 					arreglo->{
 							String resp="";
+							Integer co=0;
 							for(String po: arreglo){
 								resp=resp+po+"##";
+								co=co+1;
 							}
-							return resp;
+							Tuple2<String,Integer>resp1= new Tuple2<String,Integer>(resp,co);
+							return resp1;
 					}
 					);
 			ffinal.saveAsTextFile(this.directorio+"/interseption");

@@ -49,28 +49,29 @@ public class ExtractNeightbor {
 		 */
 		JavaPairRDD<String, Iterable<Tuple2<String, String>>> agrupation = pardepelis.groupByKey();
 		/*
-		 * Crear tupla (conteo,vecinos)
-		 * donde conteo es el número de vecinos del sujeto.
+		 * Crear tupla (id,vecinos)
+		 * id del sujeto
 		 * vecinos es un string donde se concatenan todos los vecinos
 		 */
-		JavaPairRDD<Integer,String> count= agrupation.flatMapToPair(
+		JavaPairRDD<String,String> count= agrupation.flatMapToPair(
 				tuple->{
-					ArrayList<Tuple2<Integer,String>> list= new ArrayList<Tuple2<Integer,String>>();
+					ArrayList<Tuple2<String,String>> list= new ArrayList<Tuple2<String,String>>();
 					String concatenation= "";
-					Integer co=0;
+					String datas[]= tuple._1.split("/");
+					String idsujeto= datas[4];
 					for(Tuple2<String,String>po: tuple._2()){
-						co=co+1;
+						
 						concatenation=concatenation+po._1()+po._2()+"##";
 					}
-					Tuple2<Integer,String>resp= new Tuple2<Integer,String>(co,concatenation);
+					Tuple2<String,String>resp= new Tuple2<String,String>(idsujeto.replace(",","" ),concatenation.replace(",","" ));
 					list.add(resp);
 					
 					return list.iterator();
 				}
 				);
-		JavaPairRDD<Integer,String> sort= count.sortByKey(true);
 		
-		sort.saveAsTextFile(this.directorio+"/vecinos");
+		
+		count.saveAsTextFile(this.directorio+"/vecinos");
 		context.close();
 	}
 }

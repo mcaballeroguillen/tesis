@@ -15,8 +15,8 @@ public class Main {
 			//extractor.FindObjectes(args[1]+"/result.txt",args[2]);
 			ExtractNeightbor extract1 = new ExtractNeightbor(args[1]);
 			extract1.extract();
-			//ExtractInterseption extract2 = new ExtractInterseption(args[1]);
-			//extract2.extract();
+			ExtractInterseption extract2 = new ExtractInterseption(args[1]);
+			extract2.extract();
 			
 			System.out.println("End");
 		}catch (Throwable e){
