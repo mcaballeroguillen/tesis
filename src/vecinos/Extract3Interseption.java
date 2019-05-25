@@ -10,10 +10,10 @@ import org.apache.spark.api.java.JavaSparkContext;
 import scala.Tuple2;
 import scala.Tuple3;
 
-public class ExtractInterseption {
+public class Extract3Interseption {
 	protected String directorio;
 	
-	public ExtractInterseption(String direct){
+	public Extract3Interseption(String direct){
 		this.directorio=direct;
 	}
 	
@@ -24,6 +24,7 @@ public class ExtractInterseption {
 					.setAppName(CountNeightbor.class.getName())
 					.setMaster(master);
 			
+		    conf.set("spark.executor.memory", "2147480000");
 	     	 JavaSparkContext context = new JavaSparkContext(conf);
 			
 			
@@ -71,25 +72,31 @@ public class ExtractInterseption {
 					}
 					);
 			/*
-			 * Creamos los pares (s1##s2,po)
+			 * Creamos los pares (s1##s2##s3,po)
 			 */
 			JavaPairRDD<String,String> parsubject = count.flatMapToPair(
 					tuple->{
 						ArrayList<Tuple2<String,String>> list = new ArrayList<Tuple2<String,String>>();
 						for(String s1: tuple._2()){
 							for(String s2: tuple._2()){
-								if(s1.equals(s2)){continue;}
-								String par = "";
-								String s1_id = s1.split("/")[4];
-								String s2_id = s2.split("/")[4];
-								if(s1_id.compareTo(s2_id)>0){
-									par= s1_id.replace(",","" )+"##"+s2_id.replace(",","" );
-								}else{
-									par=s2_id.replace(",","" )+"##"+s1_id.replace(",","" );
+								for(String s3: tuple._2()){
+									if(s1.equals(s2)){continue;}
+									if(s1.equals(s3)){continue;}
+									if(s2.equals(s3)){continue;}
+									String par = "";
+									String s1_id = s1.split("/")[4];
+									String s2_id = s2.split("/")[4];
+									String s3_id = s3.split("/")[4];
+									if(s1_id.compareTo(s2_id)>0){
+										par= s1_id.replace(",","" )+"##"+s2_id.replace(",","" );
+									}else{
+										par=s2_id.replace(",","" )+"##"+s1_id.replace(",","" );
+									}
+									par=par+"##"+s3_id;
+									String po= (tuple._1()._1()+tuple._1()._2()).replace(",","");
+									Tuple2<String,String> resp= new Tuple2<String,String>(par,po);
+									list.add(resp);
 								}
-								String po= (tuple._1()._1()+tuple._1()._2()).replace(",","");
-								Tuple2<String,String> resp= new Tuple2<String,String>(par,po);
-								list.add(resp);
 								}
 						}
 						return list.iterator();
@@ -103,19 +110,15 @@ public class ExtractInterseption {
 			/*
 			 * Creamos pares (s1##s2,po##po##po,3)
 			 */
-			JavaPairRDD<String,Integer> ffinal = agrup.mapValues(
-					arreglo->{
-							
+			JavaPairRDD<String,Integer> ffinal = agrup.mapToPair(
+					tuple->{
 							Integer co=0;
-							for(String po: arreglo){
-								
+							for(String po: tuple._2){
 								co=co+1;
 							}
-							
-							return co;
-					}
-					);
-			ffinal.saveAsTextFile(this.directorio+"/interseption");
+							return  new Tuple2<String,Integer>(tuple._1,co);
+					});
+			ffinal.saveAsTextFile(this.directorio+"/interseption3");
 			context.close();
 	}
 }

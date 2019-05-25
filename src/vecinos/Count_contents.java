@@ -179,7 +179,7 @@ public class Count_contents {
 			JavaPairRDD<Integer,String> sort = swap1.sortByKey(true);
 			
 			
-			sort.saveAsTextFile(this.directorio+"/incluidos");
+			filter.saveAsTextFile(this.directorio+"/incluidos");
 			
 			context.close();
 			
