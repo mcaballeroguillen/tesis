@@ -11,7 +11,7 @@ public class Main1 {
 
 	public static void main(String[] args) throws IOException{
 		if(args.length!=3){System.out.println("Debe ingresar archivo de intersecciones y de vecinos, y directorio");}
-		Count_contents contador = new Count_contents(args[1],args[2]);
+		Count_contents2 contador = new Count_contents2(args[1],args[2]);
 		contador.count(args[0]);
 	}
 }

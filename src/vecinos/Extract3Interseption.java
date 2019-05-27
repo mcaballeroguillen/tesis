@@ -22,9 +22,11 @@ public class Extract3Interseption {
 		 
 		 SparkConf conf = new SparkConf()
 					.setAppName(CountNeightbor.class.getName())
-					.setMaster(master);
-			
-		    conf.set("spark.executor.memory", "2147480000");
+					.setMaster(master)
+					.set("spark.executor.memory", "5g")
+		 			.set("spark.driver.memory", "5g");
+		    
+		   
 	     	 JavaSparkContext context = new JavaSparkContext(conf);
 			
 			
@@ -63,9 +65,9 @@ public class Extract3Interseption {
 						Integer co=0;
 						for(String v1:tuple._2){
 							co=co+1;
-							if(co>1000){break;}
+							if(co>500){break;}
 						}
-						if(co<1000){
+						if(co<500){
 							setva.add(tuple);
 						}
 						return setva.iterator();
