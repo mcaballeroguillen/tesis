@@ -105,7 +105,7 @@ public class Count_contents2 {
 					tuple->{
 						Integer a2 = tuple._2()._1();
 						Integer a3 = tuple._2()._2()._2();
-						return a2==a3;
+						return a2.equals(a3);
 					});
 			
 			
@@ -115,7 +115,9 @@ public class Count_contents2 {
 			JavaPairRDD<String,Integer> count  = result.reduceByKey(
 					(a,b)->a+b);
 			
-			JavaPairRDD<String,Integer> sort = count.sortByKey(true);
+			JavaPairRDD<Integer,String> swap = count.mapToPair(f->f.swap());
+			
+			JavaPairRDD<Integer,String> sort = swap.sortByKey(true);
 			
 			sort.saveAsTextFile(this.directorio+"/incluidos");
 			
