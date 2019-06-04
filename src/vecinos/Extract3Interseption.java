@@ -84,7 +84,7 @@ public class Extract3Interseption {
 								for(String s3: tuple._2()){
 									if(s1.equals(s2)){continue;}
 									if(s1.equals(s3)){continue;}
-									if(s2.equals(s3)){continue;}
+									//if(s2.equals(s3)){continue;}
 									String par = "";
 									String s1_id = s1.split("/")[4];
 									String s2_id = s2.split("/")[4];

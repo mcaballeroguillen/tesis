@@ -48,5 +48,11 @@ dcc
 "<http://www.wikidata.org/entity/Q11424>"
 
 
-java -jar -Xms5G contador.jar /home/mcaballero/pruebas/universidades/interseption3/part-00000  /home/mcaballero/pruebas/universidades/interseption/part-00000  /home/mcaballero/pruebas/universidades
-java -jar -Xms5G tesis_v4_sin_extract.jar /home/mcaballero/datos/wikidata-20190227-truthy-BETA.nt.gz /home/mcaballero/pruebas/universidades "<http://www.wikidata.org/entity/Q875538>" 0
+/home/mcaballero/pruebas/universidades/interseption/part-00000
+/home/mcaballero/pruebas/universidades/interseption/part-00001
+
+/home/mcaballero/pruebas/universidades/interseption3/part-00000
+/home/mcaballero/pruebas/universidades/interseption3/part-00001
+
+java -jar -Xms5G contador.jar /home/mcaballero/pruebas/universidades/interseption3/union  /home/mcaballero/pruebas/universidades/interseption/union  /home/mcaballero/pruebas/universidades
+java -jar -Xms5G tesis_v4.jar /home/mcaballero/datos/wikidata-20190227-truthy-BETA.nt.gz /home/mcaballero/pruebas/peliculas "<http://www.wikidata.org/entity/Q11424>" 0

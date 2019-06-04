@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaDoubleRDD;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
@@ -33,7 +34,7 @@ public class Count_contents2 {
 	 * @param tripleA: Archivo donde estan las triples intercepciones. 
 	 */
 	public void count(String tripleA){
-		String master = "local[*]";
+		String master = "local[2]";
 		 
 		 SparkConf conf = new SparkConf()
 					.setAppName(CountNeightbor.class.getName())
@@ -108,18 +109,98 @@ public class Count_contents2 {
 						return a2.equals(a3);
 					});
 			
-			
-			JavaPairRDD<String,Integer>  result = filter.mapValues(
-					f->{return 1;});
-			
+			/*
+			 *  Creamos tuplas:
+			 *   (s1##s2,1) si s2!=s3
+			 *   (s1##s2,0) si s2==s3
+			 */
+			JavaPairRDD<String,Integer>  result = filter.mapToPair(
+					tuple->{
+						String[] sujetos = tuple._1().split("##");
+						String s3 = tuple._2()._2()._1();
+						Integer value=1;
+						if(sujetos[1].equals(s3)){
+							value=0;
+						}
+						Tuple2<String,Integer> resp = new Tuple2<String,Integer>(tuple._1(),value);
+						
+						return resp;
+					});
+			/*
+			 * Contamos
+			 */
 			JavaPairRDD<String,Integer> count  = result.reduceByKey(
 					(a,b)->a+b);
 			
+			/*
+			 * swap 
+			 */
 			JavaPairRDD<Integer,String> swap = count.mapToPair(f->f.swap());
+			/*
+			 * ordenamos 
+			 */
+			JavaPairRDD<Integer,String> sort = swap.sortByKey(false);
+			/*
+			 * Sacamos la primera tupla que representa el valor maxim
+			 */
+			Tuple2<Integer, String> max = sort.first();
+			/*
+			 * Sacamos el valor maximo
+			 */
+			Integer max1 = max._1();
+			Double max_d = max1.doubleValue();
+			List<Double> list = new ArrayList<Double>();
+			list.add(max_d);
+			JavaDoubleRDD maxPar = context.parallelizeDoubles(list);
+			/*
+			 * Pasamos el max a pares
+			 */
+			JavaPairRDD<String,Double> resp= count.aggregateByKey(maxPar.first(),
+					(a,b)->a, 
+					(a,b)->a);
 			
-			JavaPairRDD<Integer,String> sort = swap.sortByKey(true);
+			JavaPairRDD<String, Tuple2<Integer, Double>> jo = count.join(resp);
 			
-			sort.saveAsTextFile(this.directorio+"/incluidos");
+			JavaPairRDD<String,Double> div = jo.mapValues(
+					tuple->{
+						Integer conteo = tuple._1();
+						Double maxx = tuple._2();
+						Double divi = (double)conteo/maxx;
+						return 1.0-divi;
+						
+					});
+			
+			/*
+			 * Del filtro creamos (s1##s2,A)
+			 */
+			JavaPairRDD<String,Integer> fileterA = filter.mapValues(
+					 tuple->{
+						 Integer A2 = tuple._1();
+						 return A2;
+					 });
+			/*
+			 * Hacemos join para poder usar |A| para desempatar
+			 */
+			JavaPairRDD<String, Tuple2<Integer, Double>> join1 = fileterA.join(div);
+			
+			/*
+			 * Multiplacmos 
+			 */
+			JavaPairRDD<String,Double> desenpates = join1.distinct().mapValues(
+					values->{
+						return (double)values._1()*values._2();
+					});
+			
+			/*
+			 * swat
+			 */
+			JavaPairRDD<Double,String> swap1 = desenpates.mapToPair(f->f.swap());
+			/*
+			 * ordenamos
+			 */
+			JavaPairRDD<Double,String> sort1 = swap1.sortByKey(false);
+			
+			sort1.saveAsTextFile(this.directorio+"/incluidos");
 			
 			context.close();
 			

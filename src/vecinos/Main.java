@@ -11,11 +11,11 @@ public class Main {
 				System.exit(-1);
 			}
 			System.out.println("Star");
-			//Extract extractor = new  Extract(args[0],Integer.valueOf(Integer.valueOf(args[3])));
-			//extractor.FindObjectes(args[1]+"/result.txt",args[2]);
-			//System.out.println("Vecinos O(N)");
-			//ExtractNeightbor extract1 = new ExtractNeightbor(args[1]);
-			//extract1.extract();
+			Extract extractor = new  Extract(args[0],Integer.valueOf(Integer.valueOf(args[3])));
+			extractor.FindObjectes(args[1]+"/result.txt",args[2]);
+			System.out.println("Vecinos O(N)");
+			ExtractNeightbor extract1 = new ExtractNeightbor(args[1]);
+			extract1.extract();
 			System.out.println("Vecinos O(N^2)");
 			ExtractInterseption extract2 = new ExtractInterseption(args[1]);
 			extract2.extract();
