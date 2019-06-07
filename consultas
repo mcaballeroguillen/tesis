@@ -56,3 +56,6 @@ dcc
 
 java -jar -Xms5G contador.jar /home/mcaballero/pruebas/universidades/interseption3/union  /home/mcaballero/pruebas/universidades/interseption/union  /home/mcaballero/pruebas/universidades
 java -jar -Xms10G tesis_v4_sin_extract.jar /home/mcaballero/datos/wikidata-20190227-truthy-BETA.nt.gz /home/mcaballero/pruebas/paises "<http://www.wikidata.org/entity/Q6256>" 0
+
+
+java -jar -Xms10G -XX:-UseGCOverheadLimit tesis_v4_sin_extract.jar /home/mcaballero/datos/wikidata-20190227-truthy-BETA.nt.gz /home/mcaballero/pruebas/paises "<http://www.wikidata.org/entity/Q6256>" 0 > salida.txt
