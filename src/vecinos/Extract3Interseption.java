@@ -23,8 +23,8 @@ public class Extract3Interseption {
 		 SparkConf conf = new SparkConf()
 					.setAppName(CountNeightbor.class.getName())
 					.setMaster(master)
-					.set("spark.executor.memory", "5g")
-		 			.set("spark.driver.memory", "5g");
+					.set("spark.executor.memory","8g")
+		 			.set("spark.driver.memory", "8g");
 		    
 		   
 	     	 JavaSparkContext context = new JavaSparkContext(conf);
