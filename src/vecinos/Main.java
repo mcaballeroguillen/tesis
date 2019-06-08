@@ -16,9 +16,9 @@ public class Main {
 			//System.out.println("Vecinos O(N)");
 			//ExtractNeightbor extract1 = new ExtractNeightbor(args[1]);
 			//extract1.extract();
-			//System.out.println("Vecinos O(N^2)");
-			//ExtractInterseption extract2 = new ExtractInterseption(args[1]);
-			//extract2.extract();
+			System.out.println("Vecinos O(N^2)");
+			ExtractInterseption extract2 = new ExtractInterseption(args[1]);
+			extract2.extract();
 			System.out.println("Vecinos O(N^3)");
 			Extract3Interseption extract3 = new Extract3Interseption(args[1]);
 			extract3.extract();

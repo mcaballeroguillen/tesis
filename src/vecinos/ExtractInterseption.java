@@ -62,9 +62,9 @@ public class ExtractInterseption {
 						Integer co=0;
 						for(String v1:tuple._2){
 							co=co+1;
-							if(co>500){break;}
+							if(co>300){break;}
 						}
-						if(co<500){
+						if(co<300){
 							setva.add(tuple);
 						}
 						return setva.iterator();

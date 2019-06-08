@@ -3,9 +3,9 @@ SELECT (COUNT(?p) as ?conteo) WHERE {
 }
 
 
-SELECT (COUNT(?v) as ?conteo) WHERE {
-  wd:Q185884 ?p ?v.
-  wd:Q738544 ?k ?v.
+SELECT ?v WHERE {
+  wd:Q664 ?p ?v.
+  wd:Q1028 ?p ?v.
 }
 
 224509
@@ -54,8 +54,10 @@ dcc
 /home/mcaballero/pruebas/universidades/interseption3/part-00000
 /home/mcaballero/pruebas/universidades/interseption3/part-00001
 
-java -jar -Xms5G contador.jar /home/mcaballero/pruebas/universidades/interseption3/union  /home/mcaballero/pruebas/universidades/interseption/union  /home/mcaballero/pruebas/universidades
+java -jar -Xms5G contador.jar /home/mcaballero/pruebas/paises/interseption3/union  /home/mcaballero/pruebas/paises/interseption/union  //home/mcaballero/pruebas/paises &> salida.txt
+
 java -jar -Xms10G tesis_v4_sin_extract.jar /home/mcaballero/datos/wikidata-20190227-truthy-BETA.nt.gz /home/mcaballero/pruebas/paises "<http://www.wikidata.org/entity/Q6256>" 0
 
 
-java -jar -Xms10G -XX:-UseGCOverheadLimit tesis_v4_sin_extract.jar /home/mcaballero/datos/wikidata-20190227-truthy-BETA.nt.gz /home/mcaballero/pruebas/paises "<http://www.wikidata.org/entity/Q6256>" 0 > salida.txt
+java -jar -Xms13G -XX:-UseGCOverheadLimit  tesis_v4_sin_extract.jar /home/mcaballero/datos/wikidata-20190227-truthy-BETA.nt.gz /home/mcaballero/pruebas/paises "<http://www.wikidata.org/entity/Q6256>" 0 &> salida.txt
+
