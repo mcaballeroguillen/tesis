@@ -2,9 +2,19 @@ SELECT (COUNT(?p) as ?conteo) WHERE {
   ?p wdt:P31 wd:Q11424.
 }
 
-
 SELECT ?v WHERE {
   wd:Q664 ?p ?v.
+  wd:Q1028 ?p ?v.
+  FILTER NOT EXISTS{
+    SELECT ?v WHERE {
+      wd:Q916 ?p ?v.
+      wd:Q1028 ?p ?v.
+    }
+  }
+}
+
+SELECT ?v WHERE {
+  wd:Q916 ?p ?v.
   wd:Q1028 ?p ?v.
 }
 
@@ -54,10 +64,19 @@ dcc
 /home/mcaballero/pruebas/universidades/interseption3/part-00000
 /home/mcaballero/pruebas/universidades/interseption3/part-00001
 
-java -jar -Xms5G contador.jar /home/mcaballero/pruebas/paises/interseption3/union  /home/mcaballero/pruebas/paises/interseption/union  //home/mcaballero/pruebas/paises &> salida.txt
+java -jar -Xms5G contador.jar /home/mcaballero/pruebas/comidas/interseption3/union  /home/mcaballero/pruebas/comidas/interseption/union  /home/mcaballero/comidas/paises &> salida.txt
 
-java -jar -Xms10G tesis_v4_sin_extract.jar /home/mcaballero/datos/wikidata-20190227-truthy-BETA.nt.gz /home/mcaballero/pruebas/paises "<http://www.wikidata.org/entity/Q6256>" 0
+java -jar -Xms10G tesis_v4_sin_extract.jar /home/mcaballero/datos/wikidata-20190227-truthy-BETA.nt.gz /home/mcaballero/pruebas/universidades "<http://www.wikidata.org/entity/Q6256>" 0 &> salida.txt
 
 
-java -jar -Xms13G -XX:-UseGCOverheadLimit  tesis_v4_sin_extract.jar /home/mcaballero/datos/wikidata-20190227-truthy-BETA.nt.gz /home/mcaballero/pruebas/paises "<http://www.wikidata.org/entity/Q6256>" 0 &> salida.txt
+java -jar -Xms13G -XX:-UseGCOverheadLimit  tesis_v4.jar /home/mcaballero/datos/wikidata-20190227-truthy-BETA.nt.gz /home/mcaballero/pruebas/resotarms "<http://www.wikidata.org/entity/Q18509232>" 0 &> salida.txt
 
+main de los estractores:
+
+
+			System.out.println("Vecinos O(N^2)");
+			ExtractInterseption extract2 = new ExtractInterseption(args[1]);
+			extract2.extract();
+			System.out.println("Vecinos O(N^3)");
+			Extract3Interseption extract3 = new Extract3Interseption(args[1]);
+			extract3.extract();

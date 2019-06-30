@@ -41,9 +41,11 @@ public class Count_probalistic {
 			 */
 			
 			JavaRDD<Tuple3<String,String,String>> moviesnt = inputRDD.map(
-					 line -> new Tuple3<String,String,String>(
-							 line.split("\t")[0],line.split("\t")[1],line.split("\t")[2]
-							 )
+					 line -> {
+						 String subject =  line.split("\t")[0];
+						 String s1_id = subject.split("/")[4];
+						 return new Tuple3<String,String,String>(s1_id,line.split("\t")[1],line.split("\t")[2]);
+					 }
 					 
 					 );
 			/*
@@ -91,9 +93,9 @@ public class Count_probalistic {
 						Integer co=0;
 						for(String v1:tuple._2()._1()){
 							co=co+1;
-							if(co>1000){break;}
+							if(co>500){break;}
 						}
-						if(co<1000){
+						if(co<500){
 							Tuple2<Integer,Double> s1= new Tuple2<Integer,Double>(co,tuple._2()._2()); 
 							Tuple2<Iterable<String>,Tuple2<Integer,Double>> s= new Tuple2<Iterable<String>,Tuple2<Integer,Double>>(tuple._2()._1(),s1);
 							setva.add(s);
@@ -162,7 +164,7 @@ public class Count_probalistic {
 			
 			
 			
-			trip5.saveAsTextFile(this.directorio+"/result");
+			trip5.saveAsTextFile(this.directorio+"/result_probalistic");
 			
 					
 			

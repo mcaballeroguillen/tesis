@@ -133,9 +133,18 @@ public class Count_contents2 {
 					(a,b)->a+b);
 			
 			/*
+			 * Del filtro creamos (s1##s2,A)
+			 */
+			JavaPairRDD<String,Integer> fileterA = filter.mapValues(
+					 tuple->{
+						 Integer A2 = tuple._1();
+						 return A2;
+					 });
+			
+			/*
 			 * swap 
 			 */
-			JavaPairRDD<Integer,String> swap = count.mapToPair(f->f.swap());
+			JavaPairRDD<Integer,String> swap = fileterA.mapToPair(f->f.swap());
 			/*
 			 * ordenamos 
 			 */
@@ -159,36 +168,29 @@ public class Count_contents2 {
 					(a,b)->a, 
 					(a,b)->a);
 			
-			JavaPairRDD<String, Tuple2<Integer, Double>> jo = count.join(resp);
+			JavaPairRDD<String, Tuple2<Integer, Double>> jo = fileterA.join(resp);
 			
 			JavaPairRDD<String,Double> div = jo.mapValues(
 					tuple->{
-						Integer conteo = tuple._1();
+						Integer A = tuple._1()-1;
 						Double maxx = tuple._2();
-						Double divi = (double)conteo/maxx;
-						return 1.0-divi;
+						Double divi = (double)A/maxx;
+						return divi;
 						
 					});
 			
-			/*
-			 * Del filtro creamos (s1##s2,A)
-			 */
-			JavaPairRDD<String,Integer> fileterA = filter.mapValues(
-					 tuple->{
-						 Integer A2 = tuple._1();
-						 return A2;
-					 });
+			
 			/*
 			 * Hacemos join para poder usar |A| para desempatar
 			 */
-			JavaPairRDD<String, Tuple2<Integer, Double>> join1 = fileterA.join(div);
+			JavaPairRDD<String, Tuple2<Integer, Double>> join1 = count.join(div);
 			
 			/*
-			 * Multiplacmos 
+			 * Sumamos 
 			 */
 			JavaPairRDD<String,Double> desenpates = join1.distinct().mapValues(
 					values->{
-						return (double)values._1()*values._2();
+						return (double)values._1() + values._2();
 					});
 			
 			/*
@@ -198,7 +200,7 @@ public class Count_contents2 {
 			/*
 			 * ordenamos
 			 */
-			JavaPairRDD<Double,String> sort1 = swap1.sortByKey(false);
+			JavaPairRDD<Double,String> sort1 = swap1.sortByKey(true);
 			
 			sort1.saveAsTextFile(this.directorio+"/incluidos");
 			
