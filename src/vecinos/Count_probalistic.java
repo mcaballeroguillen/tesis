@@ -31,7 +31,7 @@ public class Count_probalistic {
 		 SparkConf conf = new SparkConf()
 					.setAppName(CountNeightbor.class.getName())
 					.setMaster(master);
-			
+		 			
 	     	 JavaSparkContext context = new JavaSparkContext(conf);
 			
 			
@@ -93,9 +93,9 @@ public class Count_probalistic {
 						Integer co=0;
 						for(String v1:tuple._2()._1()){
 							co=co+1;
-							if(co>500){break;}
+							if(co>300){break;}
 						}
-						if(co<500){
+						if(co<300){
 							Tuple2<Integer,Double> s1= new Tuple2<Integer,Double>(co,tuple._2()._2()); 
 							Tuple2<Iterable<String>,Tuple2<Integer,Double>> s= new Tuple2<Iterable<String>,Tuple2<Integer,Double>>(tuple._2()._1(),s1);
 							setva.add(s);
