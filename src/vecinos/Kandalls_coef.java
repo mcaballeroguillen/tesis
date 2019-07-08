@@ -42,42 +42,49 @@ public void compare_rank(String rank1, String rank2){
     	  */
     	 JavaPairRDD<String,Integer> rank1_par = inputrank1.mapToPair(
     			 line ->{
-    				
-    				String[] s = line.split("$");
-    				if(s.length ==2){
-    					 String ss = line.split("$")[0];
-        				Integer pos = Integer.valueOf(line.split("$")[1]);
-        				return new Tuple2<String,Integer>(ss,pos);
-    				} 
-    				return new Tuple2<String,Integer>("Nada",0);
+    				try{
+    				String[] s = line.split(",");
+    				String par= s[0];
+    				Integer rank = Integer.valueOf(s[1]);
+    				return new Tuple2<String,Integer>(par,rank);
+    				}catch(Exception e){
+    					System.out.println("algo pasó");
+    					e.printStackTrace();
+    					System.exit(-1);
+    					return null;
+    				}
+					
     				
     			 });
     	 
     	 JavaPairRDD<String,Integer> rank2_par = inputrank2.mapToPair(
     			 line ->{
-    				 String[] s = line.split("$");
-     				if(s.length ==2){
-     					 String ss = line.split("$")[0];
-         				Integer pos = Integer.valueOf(line.split("$")[1]);
-         				return new Tuple2<String,Integer>(ss,pos);
-     				} 
-     				return new Tuple2<String,Integer>("Nada",0);
+    				 try{
+    	    				String[] s = line.split(",");
+    	    				String par= s[0];
+    	    				Integer rank = Integer.valueOf(s[1]);
+    	    				return new Tuple2<String,Integer>(par,rank);
+    	    				}catch(Exception e){
+    	    					System.out.println("algo pasó2");
+    	    					e.printStackTrace();
+    	    					System.exit(-1);
+    	    					return null;
+    	    				}
     			 });
+    	 
+    	 JavaPairRDD<String,Integer> filter_1 = rank1_par.filter(f->f!=null);
+    	 JavaPairRDD<String,Integer> filter_2 = rank2_par.filter(f->f!=null);
     	 /*
     	  * Creamos join
     	  */
-    	 JavaPairRDD<String,Tuple2<Integer,Integer>> join = rank1_par.join(rank2_par);
+    	 JavaPairRDD<String,Tuple2<Integer,Integer>> join = filter_1.join(filter_2);
     	 
-    	 JavaPairRDD<String,Tuple2<Integer,Integer>>  filter = join.filter(
-    			 f->{
-    				 boolean b = f._1().equals("Nada");
-    				 b = b != false;
-    				 return b;
-    			 });
+    	 
     	 
     	
     	
-    	 filter.saveAsTextFile(this.Directorio+"/rankings");
+    	 join.saveAsTextFile(this.Directorio+"/rankings");
+    	 
     	 context.close();
     	 
 }

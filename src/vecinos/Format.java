@@ -36,7 +36,7 @@ public class Format {
 				s2 = s2.replaceAll("[()]","");
 				s1 = s1.replaceAll(">", "");
 				s2 = s2.replaceAll(">", "");
-				String newline = s1+"##"+s2+'$'+ pos.toString();
+				String newline = s1+"##"+s2+','+ pos.toString();
 				pw.println(newline);
 				pos = pos+1;
 			}
@@ -67,7 +67,7 @@ public class Format {
 				
 				ss = ss.replaceAll(">", "");
 				
-				String newline = ss+'$'+ pos.toString();
+				String newline = ss+','+ pos.toString();
 				pw.println(newline);
 				pos = pos+1;
 			}
