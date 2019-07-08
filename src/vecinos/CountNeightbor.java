@@ -26,8 +26,8 @@ public class CountNeightbor {
 	 * 
 	 * @param File: File to search
 	 */
-	public CountNeightbor(String File){
-		this.directorio=File;
+	public CountNeightbor(String directorio){
+		this.directorio=directorio;
 	}
 /**
  * Count
@@ -77,9 +77,9 @@ public class CountNeightbor {
 						Integer co=0;
 						for(String v1:tuple._2){
 							co=co+1;
-							if(co>1000){break;}
+							if(co>300){break;}
 						}
-						if(co<1000){
+						if(co<300){
 							setva.add(tuple);
 						}
 						return setva.iterator();

@@ -38,9 +38,11 @@ public class CountNeightbor_1 {
 			 */
 			
 			JavaRDD<Tuple3<String,String,String>> moviesnt = inputRDD.map(
-					 line -> new Tuple3<String,String,String>(
-							 line.split("\t")[0],line.split("\t")[1],line.split("\t")[2]
-							 )
+					 line -> {
+						 String[] values = line.split("\t");
+						 String sujetcs_id = values[0].split("/")[4];
+						 return new Tuple3<String,String,String>(sujetcs_id,values[1],values[2]);
+					 	}
 					 
 					 );
 			/*
@@ -67,9 +69,9 @@ public class CountNeightbor_1 {
 						Integer co=0;
 						for(String v1:tuple._2){
 							co=co+1;
-							if(co>1000){break;}
+							if(co>300){break;}
 						}
-						if(co<1000){
+						if(co<300){
 							setva.add(tuple);
 						}
 						return setva.iterator();
@@ -127,7 +129,7 @@ public class CountNeightbor_1 {
 			
 			
 			
-			trip5.saveAsTextFile(this.directorio+"/result");
+			trip5.saveAsTextFile(this.directorio+"/result_norm");
 			trip7.saveAsTextFile(this.directorio+"/dis_frec");
 					
 			
