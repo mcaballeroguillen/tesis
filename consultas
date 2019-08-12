@@ -64,7 +64,7 @@ dcc
 /home/mcaballero/pruebas/universidades/interseption3/part-00000
 /home/mcaballero/pruebas/universidades/interseption3/part-00001
 
-java -jar -Xms5G contador.jar /home/mcaballero/pruebas/comidas/interseption3/union  /home/mcaballero/pruebas/comidas/interseption/union  /home/mcaballero/comidas/paises &> salida.txt
+java -jar -Xms5G contador.jar /home/mcaballero/pruebas/comidas/interseption3/union  /home/mcaballero/pruebas/comidas/interseption/union  /home/mcaballero/pruebas/comidas &> salida.txt
 
 java -jar -Xms10G tesis_v4_sin_extract.jar /home/mcaballero/datos/wikidata-20190227-truthy-BETA.nt.gz /home/mcaballero/pruebas/universidades "<http://www.wikidata.org/entity/Q6256>" 0 &> salida.txt
 
@@ -85,8 +85,8 @@ Rank1
 /home/mcaballero/pruebas/universidades/result_probalistic/union
 /home/mcaballero/pruebas/universidades/result_probalistic/
 Rank2
-/home/mcaballero/pruebas/universidades/incluidos/union
-/home/mcaballero/pruebas/universidades/incluidos/
+/home/mcaballero/pruebas/comidas/incluidos/union
+/home/mcaballero/pruebas/comidas/incluidos/
 Rank1.2
 /home/mcaballero/pruebas/universidades/result_norm/union
 /home/mcaballero/pruebas/universidades/result_norm/
@@ -97,3 +97,4 @@ Rank1.2
 /home/mcaballero/pruebas/universidades/result_norm/rank1.txt
 
 /home/mcaballero/pruebas/universidades
+/home/mcaballero/pruebas/comidas
