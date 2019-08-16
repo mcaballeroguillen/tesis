@@ -11,10 +11,8 @@ public class Main {
 				System.exit(-1);
 			}
 			System.out.println("Star");
-			//Extract extractor = new  Extract(args[0],Integer.valueOf(Integer.valueOf(args[3])));
-			//extractor.FindObjectes(args[1]+"/result.txt",args[2]);
-			CountNeightbor_1 contador = new CountNeightbor_1(args[1]);
-			contador.count();
+			Extract extractor = new  Extract(args[0],Integer.valueOf(Integer.valueOf(args[3])));
+			extractor.FindObjectes(args[1]+"/result.txt",args[2]);
 			System.out.println("End");
 		}catch (Throwable e){
 		e.printStackTrace();
