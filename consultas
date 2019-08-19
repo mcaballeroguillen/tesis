@@ -27,7 +27,7 @@ SELECT ?v WHERE {
  ssh -p 332 mcaballero@milenio.dcc.uchile.cl
  sftp -oPort=332 mcaballero@milenio.dcc.uchile.cl 
  
-  sftp  -oPort=220 uhadoop@cm.dcc.uchile.cl 
+sftp  -oPort=220 uhadoop@cm.dcc.uchile.cl 
 
 ssh -i llaves.pub -p 332 mcaballero@milenio.dcc.uchile.cl
 
@@ -64,9 +64,9 @@ dcc
 /home/mcaballero/pruebas/universidades/interseption3/part-00000
 /home/mcaballero/pruebas/universidades/interseption3/part-00001
 
-java -jar -Xms5G contador.jar /home/mcaballero/pruebas/comidas/interseption3/union  /home/mcaballero/pruebas/comidas/interseption/union  /home/mcaballero/pruebas/comidas &> salida.txt
+java -jar -Xms5G contador.jar /home/mcaballero/pruebas/paises/interseption3/union  /home/mcaballero/pruebas/paises/interseption/union  /home/mcaballero/pruebas/paises &> salida
 
-java -jar -Xms10G tesis_v4_sin_extract.jar /home/mcaballero/datos/wikidata-20190704-truthy-BETA.nt.gz /home/mcaballero/pruebas/modelos_autos "<http://www.wikidata.org/entity/Q3231690>" 0 &> salida.txt
+java -jar -Xms10G tesis_v4_sin_extract.jar /home/mcaballero/datos/wikidata-20190704-truthy-BETA.nt.gz /home/mcaballero/pruebas/paises "<http://www.wikidata.org/entity/Q3231690>" 0 &> salida
 
 
 java -jar -Xms13G -XX:-UseGCOverheadLimit  tesis_v4.jar /home/mcaballero/datos/wikidata-20190704-truthy-BETA.nt.gz /home/mcaballero/pruebas/resotarms "<http://www.wikidata.org/entity/Q18509232>" 0 &> salida.txt
@@ -85,21 +85,22 @@ CountNeightbor_1 contador = new CountNeightbor_1(args[1]);
 contador.count();
 			
 Rank1			
-/home/mcaballero/pruebas/peliculas/result_probalistic/union
-/home/mcaballero/pruebas/peliculas/result_probalistic/
+/home/mcaballero/pruebas/paises/result_probalistic/union
+/home/mcaballero/pruebas/paises/result_probalistic/
 Rank2
-/home/mcaballero/pruebas/comidas/incluidos/union
-/home/mcaballero/pruebas/comidas/incluidos/
+/home/mcaballero/pruebas/paises/incluidos/union
+/home/mcaballero/pruebas/paises/incluidos/
 Rank1.2
-/home/mcaballero/pruebas/peliculas/result_norm/union
-/home/mcaballero/pruebas/peliculas/result_norm/
+/home/mcaballero/pruebas/paises/result_norm/union
+/home/mcaballero/pruebas/paises/result_norm/
 
 
-/home/mcaballero/pruebas/peliculas/result_probalistic/rank1.txt
-/home/mcaballero/pruebas/comidas/incluidos/rank2.txt
-/home/mcaballero/pruebas/peliculas/result_norm/rank1.txt
+/home/mcaballero/pruebas/paises/result_probalistic/rank1.txt
+/home/mcaballero/pruebas/paises/incluidos/rank2.txt
+/home/mcaballero/pruebas/paises/result_norm/rank1.txt
 
 /home/mcaballero/pruebas/universidades
 /home/mcaballero/pruebas/comidas
 /home/mcaballero/pruebas/peliculas
 /home/mcaballero/pruebas/modelos_autos
+/home/mcaballero/pruebas/paises
