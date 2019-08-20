@@ -66,7 +66,7 @@ dcc
 
 java -jar -Xms5G contador.jar /home/mcaballero/pruebas/paises/interseption3/union  /home/mcaballero/pruebas/paises/interseption/union  /home/mcaballero/pruebas/paises &> salida
 
-java -jar -Xms10G tesis_v4_sin_extract.jar /home/mcaballero/datos/wikidata-20190704-truthy-BETA.nt.gz /home/mcaballero/pruebas/paises "<http://www.wikidata.org/entity/Q3231690>" 0 &> salida
+java -jar -Xms15G normal_500.jar /home/mcaballero/datos/wikidata-20190704-truthy-BETA.nt.gz /home/mcaballero/pruebas/paises "<http://www.wikidata.org/entity/Q3231690>" 0 &> salida500
 
 
 java -jar -Xms13G -XX:-UseGCOverheadLimit  tesis_v4.jar /home/mcaballero/datos/wikidata-20190704-truthy-BETA.nt.gz /home/mcaballero/pruebas/resotarms "<http://www.wikidata.org/entity/Q18509232>" 0 &> salida.txt

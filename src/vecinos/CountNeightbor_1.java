@@ -69,9 +69,9 @@ public class CountNeightbor_1 {
 						Integer co=0;
 						for(String v1:tuple._2){
 							co=co+1;
-							if(co>300){break;}
+							if(co>4){break;}
 						}
-						if(co<300){
+						if(co<4){
 							setva.add(tuple);
 						}
 						return setva.iterator();
@@ -123,14 +123,14 @@ public class CountNeightbor_1 {
 			 * Contar por llave
 			 */
 			
-			JavaPairRDD<Integer, Integer> trip7 = trip4.aggregateByKey(0,
-					 (a,b) ->{return a+1;}
-					, (a,b)->{return a+b;});
+			//JavaPairRDD<Integer, Integer> trip7 = trip4.aggregateByKey(0,
+				//	 (a,b) ->{return a+1;}
+				//	, (a,b)->{return a+b;});
 			
 			
 			
-			trip5.saveAsTextFile(this.directorio+"/result_norm");
-			trip7.saveAsTextFile(this.directorio+"/dis_frec");
+			trip5.saveAsTextFile(this.directorio+"/result_norm_4");
+			//trip7.saveAsTextFile(this.directorio+"/dis_frec");
 					
 			
 			context.close();
