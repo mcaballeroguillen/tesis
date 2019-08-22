@@ -1,6 +1,6 @@
 #!/bin/bash
 
-java -Xms10G -jar kendalls.jar /home/mcaballero/pruebas/universidades/result_norm_4/rank1.txt  /home/mcaballero/pruebas/universidades/result_norm_500/rank1.txt /home/mcaballero/pruebas/universidades/result_norm_4
+java -Xms15G -jar kendalls.jar /home/mcaballero/pruebas/universidades/result_norm_4/rank1.txt  /home/mcaballero/pruebas/universidades/result_norm_500/rank1.txt /home/mcaballero/pruebas/universidades/result_norm_4
 
 java -Xms10G -jar kendalls.jar /home/mcaballero/pruebas/universidades/result_norm_8/rank1.txt  /home/mcaballero/pruebas/universidades/result_norm_500/rank1.txt /home/mcaballero/pruebas/universidades/result_norm_8
 
