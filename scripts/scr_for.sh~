@@ -1,6 +1,6 @@
 #!/bin/bash
 
-java -Xms10G -jar format.jar /home/mcaballero/pruebas/comidas/result_norm_4/union 1 //home/mcaballero/pruebas/comidas/result_norm_4/
+java -Xms10G -jar format.jar /home/mcaballero/pruebas/modelos_autos/result_norm_4/union 1 /home/mcaballero/pruebas/modelos_autos/result_norm_4/
 
 java -Xms10G -jar format.jar /home/mcaballero/pruebas/comidas/result_norm_8/union 1 //home/mcaballero/pruebas/comidas/result_norm_8/
 
