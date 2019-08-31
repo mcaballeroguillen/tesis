@@ -1,8 +1,8 @@
 #!/bin/bash
 
-java -jar -Xms15G doble_4.jar /home/mcaballero/datos/wikidata-20190704-truthy-BETA.nt.gz /home/mcaballero/pruebas/modelos_autos "<http://www.wikidata.org/entity/Q3231690>" 0 &> salida4_doble
+java -jar -Xms15G contador.jar /home/mcaballero/pruebas/modelos_autos/interseption3_4/union  /home/mcaballero/pruebas/modelos_autos/interseption_4/union  /home/mcaballero/pruebas/modelos_autos/interseption3_4 &> salida_4
 
-java -jar -Xms15G doble_8.jar /home/mcaballero/datos/wikidata-20190704-truthy-BETA.nt.gz /home/mcaballero/pruebas/modelos_autos "<http://www.wikidata.org/entity/Q3231690>" 0 &> salida8_doble
+java -jar -Xms15G contador.jar /home/mcaballero/pruebas/modelos_autos/interseption3_8/union  /home/mcaballero/pruebas/modelos_autos/interseption_8/union  /home/mcaballero/pruebas/modelos_autos/interseption3_8 &> salida_8
 
 java -jar -Xms15G doble_16.jar /home/mcaballero/datos/wikidata-20190704-truthy-BETA.nt.gz /home/mcaballero/pruebas/modelos_autos "<http://www.wikidata.org/entity/Q3231690>" 0 &> salida16_doble
 

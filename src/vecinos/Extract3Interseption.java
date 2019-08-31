@@ -23,8 +23,8 @@ public class Extract3Interseption {
 		 SparkConf conf = new SparkConf()
 					.setAppName(CountNeightbor.class.getName())
 					.setMaster(master)
-					.set("spark.executor.memory","8g")
-		 			.set("spark.driver.memory", "8g")
+					.set("spark.executor.memory","12g")
+		 			.set("spark.driver.memory", "12g")
 		 			.set("spark.network.timeout", "600s");
 		    
 		   
@@ -66,9 +66,9 @@ public class Extract3Interseption {
 						Integer co=0;
 						for(String v1:tuple._2){
 							co=co+1;
-							if(co>300){break;}
+							if(co>500){break;}
 						}
-						if(co<300){
+						if(co<500){
 							setva.add(tuple);
 						}
 						return setva.iterator();
@@ -121,7 +121,7 @@ public class Extract3Interseption {
 							}
 							return  new Tuple2<String,Integer>(tuple._1,co);
 					});
-			ffinal.saveAsTextFile(this.directorio+"/interseption3");
+			ffinal.saveAsTextFile(this.directorio+"/interseption3_500");
 			context.close();
 	}
 }
