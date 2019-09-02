@@ -27,7 +27,7 @@ SELECT ?v WHERE {
  ssh -p 332 mcaballero@milenio.dcc.uchile.cl
  sftp -oPort=332 mcaballero@milenio.dcc.uchile.cl 
  
-  sftp  -oPort=220 uhadoop@cm.dcc.uchile.cl 
+sftp  -oPort=220 uhadoop@cm.dcc.uchile.cl 
 
 ssh -i llaves.pub -p 332 mcaballero@milenio.dcc.uchile.cl
 
@@ -64,10 +64,54 @@ dcc
 /home/mcaballero/pruebas/universidades/interseption3/part-00000
 /home/mcaballero/pruebas/universidades/interseption3/part-00001
 
-java -jar -Xms5G contador.jar /home/mcaballero/pruebas/paises/interseption3/union  /home/mcaballero/pruebas/paises/interseption/union  /home/mcaballero/pruebas/paises &> salida.txt
+java -jar -Xms5G contador.jar /home/mcaballero/pruebas/paises/interseption3/union  /home/mcaballero/pruebas/paises/interseption/union  /home/mcaballero/pruebas/paises &> salida
 
-java -jar -Xms10G tesis_v4_sin_extract.jar /home/mcaballero/datos/wikidata-20190227-truthy-BETA.nt.gz /home/mcaballero/pruebas/paises "<http://www.wikidata.org/entity/Q6256>" 0
+java -jar -Xms15G normal_500.jar /home/mcaballero/datos/wikidata-20190704-truthy-BETA.nt.gz /home/mcaballero/pruebas/paises "<http://www.wikidata.org/entity/Q3231690>" 0 &> salida500
 
 
-java -jar -Xms13G -XX:-UseGCOverheadLimit  tesis_v4.jar /home/mcaballero/datos/wikidata-20190227-truthy-BETA.nt.gz /home/mcaballero/pruebas/resotarms "<http://www.wikidata.org/entity/Q18509232>" 0 &> salida.txt
+java -jar -Xms13G -XX:-UseGCOverheadLimit  tesis_v4.jar /home/mcaballero/datos/wikidata-20190704-truthy-BETA.nt.gz /home/mcaballero/pruebas/resotarms "<http://www.wikidata.org/entity/Q18509232>" 0 &> salida.txt
 
+main de los estractores:
+
+
+			System.out.println("Vecinos O(N^2)");
+			ExtractInterseption extract2 = new ExtractInterseption(args[1]);
+			extract2.extract();
+			System.out.println("Vecinos O(N^3)");
+			Extract3Interseption extract3 = new Extract3Interseption(args[1]);
+			extract3.extract();
+Main del normal:
+CountNeightbor_1 contador = new CountNeightbor_1(args[1]);
+contador.count();
+			
+Rank1			
+/home/mcaballero/pruebas/paises/result_probalistic/union
+/home/mcaballero/pruebas/paises/result_probalistic/
+Rank2
+/home/mcaballero/pruebas/paises/incluidos/union
+/home/mcaballero/pruebas/paises/incluidos/
+Rank1.2
+/home/mcaballero/pruebas/paises/result_norm/union
+/home/mcaballero/pruebas/paises/result_norm/
+
+
+/home/mcaballero/pruebas/paises/result_probalistic/rank1.txt
+/home/mcaballero/pruebas/paises/incluidos/rank2.txt
+/home/mcaballero/pruebas/paises/result_norm/rank1.txt
+
+/home/mcaballero/pruebas/universidades
+/home/mcaballero/pruebas/comidas
+/home/mcaballero/pruebas/peliculas
+/home/mcaballero/pruebas/modelos_autos
+/home/mcaballero/pruebas/paises
+
+
+
+
+ cat part-00000 part-00001 part-00002 part-00003 part-00004 part-00005 part-00006 part-00007 part-00008 part-00009 > union_0_9
+ cat part-00010 part-00011 part-00012 part-00013 part-00014 part-00015 part-00016 part-00017 part-00018 part-00019 > union_10_19
+ cat part-00020 part-00021 part-00022 part-00023 part-00024 part-00025 part-00026 part-00027 part-00028 part-00029 > union_20_29
+ cat part-00030 part-00031 part-00032 part-00033 part-00034 part-00035 part-00036 part-00037 part-00038 part-00039 > union_30_39
+ cat part-00040 part-00041 part-00042 part-00043 part-00044 part-00045 part-00046 part-00047 part-00048 part-00049 > union_40_49
+ cat part-00050 part-00051 part-00052 part-00053 part-00054 part-00055 part-00056 part-00057 part-00058 part-00059 > union_50_59
+ cat part-00060 part-00061 part-00062 part-00063 part-00064 part-00065 part-00066 part-00067 part-00068 > union_60_68

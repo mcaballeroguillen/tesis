@@ -1,17 +1,15 @@
 #!/bin/bash
 
-java -Xms15G -jar kendalls.jar /home/mcaballero/pruebas/comidas/result_probalistic_4/rank1.txt  /home/mcaballero/pruebas/comidas/result_probalistic_500/rank1.txt /home/mcaballero/pruebas/comidas/result_probalistic_4
+java -Xms15G -jar kendalls.jar /home/mcaballero/pruebas/modelos_autos/interseption3_4/incluidos/rank2.txt  /home/mcaballero/pruebas/modelos_autos/interseption3_256/incluidos/rank2.txt /home/mcaballero/pruebas/modelos_autos/interseption3_4
 
-java -Xms15G -jar kendalls.jar /home/mcaballero/pruebas/comidas/result_probalistic_8/rank1.txt  /home/mcaballero/pruebas/comidas/result_probalistic_500/rank1.txt /home/mcaballero/pruebas/comidas/result_probalistic_8
+java -Xms15G -jar kendalls.jar /home/mcaballero/pruebas/modelos_autos/interseption3_8/incluidos/rank2.txt  /home/mcaballero/pruebas/modelos_autos/interseption3_256/incluidos/rank2.txt /home/mcaballero/pruebas/modelos_autos/interseption3_8
 
-java -Xms15G -jar kendalls.jar /home/mcaballero/pruebas/comidas/result_probalistic_16/rank1.txt  /home/mcaballero/pruebas/comidas/result_probalistic_500/rank1.txt /home/mcaballero/pruebas/comidas/result_probalistic_16
+java -Xms15G -jar kendalls.jar /home/mcaballero/pruebas/modelos_autos/interseption3_16/incluidos/rank2.txt  /home/mcaballero/pruebas/modelos_autos/interseption3_256/incluidos/rank2.txt /home/mcaballero/pruebas/modelos_autos/interseption3_16
 
-java -Xms15G -jar kendalls.jar /home/mcaballero/pruebas/comidas/result_probalistic_32/rank1.txt  /home/mcaballero/pruebas/comidas/result_probalistic_500/rank1.txt /home/mcaballero/pruebas/comidas/result_probalistic_32
+java -Xms15G -jar kendalls.jar /home/mcaballero/pruebas/modelos_autos/interseption3_32/incluidos/rank2.txt  /home/mcaballero/pruebas/modelos_autos/interseption3_256/incluidos/rank2.txt /home/mcaballero/pruebas/modelos_autos/interseption3_32
 
-java -Xms15G -jar kendalls.jar /home/mcaballero/pruebas/comidas/result_probalistic_64/rank1.txt  /home/mcaballero/pruebas/comidas/result_probalistic_500/rank1.txt /home/mcaballero/pruebas/comidas/result_probalistic_64
+java -Xms15G -jar kendalls.jar /home/mcaballero/pruebas/modelos_autos/interseption3_64/incluidos/rank2.txt  /home/mcaballero/pruebas/modelos_autos/interseption3_256/incluidos/rank2.txt /home/mcaballero/pruebas/modelos_autos/interseption3_64
 
-java -Xms15G -jar kendalls.jar /home/mcaballero/pruebas/comidas/result_probalistic_128/rank1.txt  /home/mcaballero/pruebas/comidas/result_probalistic_500/rank1.txt /home/mcaballero/pruebas/comidas/result_probalistic_128
-
-java -Xms15G -jar kendalls.jar /home/mcaballero/pruebas/comidas/result_probalistic_256/rank1.txt  /home/mcaballero/pruebas/comidas/result_probalistic_500/rank1.txt /home/mcaballero/pruebas/comidas/result_probalistic_256
+java -Xms15G -jar kendalls.jar /home/mcaballero/pruebas/modelos_autos/interseption3_128/incluidos/rank2.txt  /home/mcaballero/pruebas/modelos_autos/interseption3_256/incluidos/rank2.txt /home/mcaballero/pruebas/modelos_autos/interseption3_128
 
 
