@@ -114,4 +114,6 @@ Rank1.2
  cat part-00030 part-00031 part-00032 part-00033 part-00034 part-00035 part-00036 part-00037 part-00038 part-00039 > union_30_39
  cat part-00040 part-00041 part-00042 part-00043 part-00044 part-00045 part-00046 part-00047 part-00048 part-00049 > union_40_49
  cat part-00050 part-00051 part-00052 part-00053 part-00054 part-00055 part-00056 part-00057 part-00058 part-00059 > union_50_59
- cat part-00060 part-00061 part-00062 part-00063 part-00064 part-00065 part-00066 part-00067 part-00068 > union_60_68
+ cat part-00060 part-00061 part-00062 part-00063 part-00064 part-00065 part-00066 part-00067 part-00068 part-00069 > union_60_69
+ cat part-00070 part-00071 part-00072 part-00073 part-00074 part-00075 part-00076 part-00077 part-00078 part-00079 > union_70_79
+ cat part-00070 part-00071 part-00072 part-00073 part-00074 part-00075 part-00076 part-00077 part-00078 part-00079 > union_70_79
