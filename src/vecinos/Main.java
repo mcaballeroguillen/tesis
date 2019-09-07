@@ -13,8 +13,7 @@ public class Main {
 			System.out.println("Star");
 			//Extract extractor = new  Extract(args[0],Integer.valueOf(Integer.valueOf(args[3])));
 			//extractor.FindObjectes(args[1]+"/result.txt",args[2]);
-			System.out.println("Vecinos O(N^2)");
-			ExtractInterseption extract2 = new ExtractInterseption(args[1]);
+			Count_subjects extract2 = new Count_subjects(args[1]);
 			extract2.extract();
 			System.out.println("End");
 		}catch (Throwable e){
