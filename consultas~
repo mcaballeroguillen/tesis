@@ -66,7 +66,7 @@ dcc
 
 java -jar -Xms5G contador.jar /home/mcaballero/pruebas/paises/interseption3/union  /home/mcaballero/pruebas/paises/interseption/union  /home/mcaballero/pruebas/paises &> salida
 
-java -jar -Xms15G normal_500.jar /home/mcaballero/datos/wikidata-20190704-truthy-BETA.nt.gz /home/mcaballero/pruebas/paises "<http://www.wikidata.org/entity/Q3231690>" 0 &> salida500
+java -jar -Xms15G normal_500.jar /home/mcaballero/datos/wikidata-20190704-truthy-BETA.nt.gz /home/mcaballero/pruebas/comidas "<http://www.wikidata.org/entity/Q3231690>" 0 &> salida500
 
 
 java -jar -Xms13G -XX:-UseGCOverheadLimit  tesis_v4.jar /home/mcaballero/datos/wikidata-20190704-truthy-BETA.nt.gz /home/mcaballero/pruebas/resotarms "<http://www.wikidata.org/entity/Q18509232>" 0 &> salida.txt
@@ -116,4 +116,16 @@ Rank1.2
  cat part-00050 part-00051 part-00052 part-00053 part-00054 part-00055 part-00056 part-00057 part-00058 part-00059 > union_50_59
  cat part-00060 part-00061 part-00062 part-00063 part-00064 part-00065 part-00066 part-00067 part-00068 part-00069 > union_60_69
  cat part-00070 part-00071 part-00072 part-00073 part-00074 part-00075 part-00076 part-00077 part-00078 part-00079 > union_70_79
- cat part-00070 part-00071 part-00072 part-00073 part-00074 part-00075 part-00076 part-00077 part-00078 part-00079 > union_70_79
+ cat part-00080 part-00081 part-00082 part-00083 part-00084 part-00085 part-00086 part-00087 part-00088 part-00089 > union_80_89
+ cat part-00090 part-00091 part-00092 part-00093 part-00094 part-00095 part-00096 part-00097 part-00098 part-00099 > union_90_99
+
+ cat part-00100 part-00101 part-00102 part-00103 part-00104 part-00105 part-00106 part-00107 part-00108 part-00109 > union_100_109
+ cat part-00110 part-00111 part-00112 part-00113 part-00114 part-00115 part-00116 part-00117 part-00118 part-00119 > union_110_119
+ cat part-00120 part-00121 part-00122 part-00123 part-00124 part-00125 part-00126 part-00127 part-00128 part-00129 > union_120_129
+ cat part-00130 part-00131 part-00132 part-00133 part-00134 part-00135 part-00136 part-00137 part-00138 part-00139 > union_130_139
+ cat part-00140 part-00141 part-00142 part-00143 part-00144 part-00145 part-00146 part-00147 part-00148 part-00149 > union_140_149
+ cat part-00150 part-00151 part-00152 part-00153 part-00154 part-00155 part-00156 part-00157 part-00158 part-00159 > union_150_159
+ cat part-00160 part-00161 part-00162 part-00163 part-00164 part-00165 part-00166 part-00167 part-00168 part-00169 > union_160_169
+ cat part-00170 part-00171 part-00172 part-00173 part-00174 part-00175 part-00176 part-00177 part-00178 part-00179 > union_170_179
+ cat part-00180 part-00181 part-00182 part-00183 part-00184 part-00185 part-00186 part-00187 part-00188 part-00189 > union_180_189
+ cat part-00190 part-00191 part-00192 part-00193 part-00194 part-00195 part-00196 part-00197 part-00198 part-00199 > union_190_199
