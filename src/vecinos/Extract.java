@@ -19,17 +19,19 @@ import org.semanticweb.yars.nx.parser.NxParser;
 public class Extract {
 	protected Set<String> objects; 
 	protected String File;
-	int limit;
+	protected int limit_subjects;
+	protected int limit_tuples;
 	/**
 	 * 
 	 * @param FileIn: Entry file
-	 * @param limit: Limit of the search
+	 * @param limit_subjects: Limit of subjectes to find.
+	 * @param limit_tuples: Limit of tuples with have subjects selcted. 
 	 */
-	public Extract(String FileIn, int limit){
+	public Extract(String FileIn, int limit_subjects, int limit_tuples){
 		objects = new TreeSet<>();
 		this.File=FileIn;
-		this.limit = limit;
-		
+		this.limit_subjects = limit_subjects;
+		this.limit_tuples = limit_tuples;
 	}
 	
 	/**
@@ -39,7 +41,7 @@ public class Extract {
 	 * @throws IOException: File handling exceptions
 	 */
 	public void FindObjectes (String OutFile,String ObjectType) throws IOException{
-		int teplimit=this.limit;
+		int teplimit=this.limit_subjects;
 		InputStream in = null;
 		in = new FileInputStream(this.File);
 		in = new GZIPInputStream(in);
@@ -47,13 +49,14 @@ public class Extract {
 		nxp.parse(in);
 		
 		for (Node[] nx : nxp){
-			if(this.limit>0){   //If the limit is 0,  means that  should search in all wikidata.
-				teplimit--;
-				if(teplimit<=0){break;}
-			}
 			if(nx[1].toString().equals("<http://www.wikidata.org/prop/direct/P31>") && nx[2].toString().equals(ObjectType)){
+				if(this.limit_subjects>0){   //If the limit is 0,  means that  should search in all wikidata.
+					teplimit--;
+					if(teplimit<=0){break;}
+				}
 				this.objects.add(nx[0].toString());
 			}
+			
 			
 		}
 		in.close();
@@ -67,7 +70,7 @@ public class Extract {
 	 * @throws IOException: File handling exceptions
 	 */
 	private void writeFile(String OutFile) throws IOException {
-		int templimit = this.limit;
+		int templimit = this.limit_tuples;
 		InputStream in = null;
 		FileOutputStream out = null;
 		in = new FileInputStream(this.File);
@@ -77,10 +80,6 @@ public class Extract {
 		nxp.parse(in);
 		
 		for (Node[] nx : nxp){
-			if(this.limit>0){ //If the limit is 0,  means that  should search in all wikidata
-				templimit--;
-				if(templimit<=0){break;}
-			}
 			if(this.objects.contains(nx[0].toString())){
 				 
 				 out.write(nx[0].toString().getBytes());
@@ -89,7 +88,10 @@ public class Extract {
 				 out.write('\t');
 				 out.write(nx[2].toString().getBytes());
 				 out.write('\n');
-				 
+				 if(this.limit_tuples>0){ //If the limit is 0,  means that  should search in all wikidata
+						templimit--;
+						if(templimit<=0){break;}
+					}
 				 
 			}
 			
