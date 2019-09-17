@@ -11,7 +11,7 @@ public class Main {
 				System.exit(-1);
 			}
 			System.out.println("Star");
-			Extract extractor = new  Extract(args[0],Integer.valueOf(args[3]),Integer.valueOf(args[4]));
+			Extrac_Especific extractor = new  Extrac_Especific(args[0],Integer.valueOf(args[3]),Integer.valueOf(args[4]));
 			extractor.FindObjectes(args[1]+"/result.txt",args[2]);
 					}catch (Throwable e){
 		e.printStackTrace();
