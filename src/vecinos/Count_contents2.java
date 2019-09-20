@@ -108,7 +108,15 @@ public class Count_contents2 {
 						Integer a3 = tuple._2()._2()._2();
 						return a2.equals(a3);
 					});
-			
+			/*
+			 * Filtrar lo distintos
+			 */
+			JavaPairRDD<String, Tuple2<Integer, Tuple2<String, Integer>>> filter1 = join.filter(
+					tuple->{
+						Integer a2 = tuple._2()._1();
+						Integer a3 = tuple._2()._2()._2();
+						return a2!=a3;
+					});
 			/*
 			 *  Creamos tuplas:
 			 *   (s1##s2,1) si s2!=s3
@@ -126,16 +134,25 @@ public class Count_contents2 {
 						
 						return resp;
 					});
+			
+			JavaPairRDD<String,Integer>  result_1 = filter1 .mapToPair(
+					tuple->{
+						
+						Tuple2<String,Integer> resp = new Tuple2<String,Integer>(tuple._1(),0);
+						return resp;
+					});
+			JavaPairRDD<String,Integer> union = result.union(result_1);
+			
 			/*
 			 * Contamos
 			 */
-			JavaPairRDD<String,Integer> count  = result.reduceByKey(
+			JavaPairRDD<String,Integer> count  = union.reduceByKey(
 					(a,b)->a+b);
 			
 			/*
-			 * Del filtro creamos (s1##s2,A)
+			 * Del join creamos (s1##s2,A)
 			 */
-			JavaPairRDD<String,Integer> fileterA = filter.mapValues(
+			JavaPairRDD<String,Integer> fileterA = join.mapValues(
 					 tuple->{
 						 Integer A2 = tuple._1();
 						 return A2;
