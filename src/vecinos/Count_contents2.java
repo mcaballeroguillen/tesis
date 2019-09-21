@@ -192,7 +192,8 @@ public class Count_contents2 {
 						Integer A = tuple._1()-1;
 						Double maxx = tuple._2();
 						Double divi = (double)A/maxx;
-						return divi;
+						Double inv = 1 -divi;
+						return inv;
 						
 					});
 			

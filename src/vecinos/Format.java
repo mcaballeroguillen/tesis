@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Format {
 
@@ -15,6 +17,7 @@ public class Format {
 	    BufferedReader br = null;
 	    FileWriter archivo_out = null;
         PrintWriter pw = null;
+        Set<String> objects = new TreeSet<>();
 		if (args.length != 3){
 			System.out.println("Debe Ingresar archivo,tipo y directorio final");
 			System.exit(-1);
@@ -36,7 +39,17 @@ public class Format {
 				s2 = s2.replaceAll("[()]","");
 				s1 = s1.replaceAll(">", "");
 				s2 = s2.replaceAll(">", "");
-				String newline = s1+"##"+s2+','+ pos.toString();
+				Integer v1 = Integer.valueOf(s1.replaceAll("Q", ""));
+				Integer v2 = Integer.valueOf(s2.replaceAll("Q", ""));
+				String par;
+				if(v1<v2){
+					 par = s1+"##" +s2;
+				}else{
+					par = s2 +"##"+ s1;
+				}
+				if(objects.contains(par)){continue;};
+				String newline = par+','+ pos.toString();
+				objects.add(par);
 				pw.println(newline);
 				pos = pos+1;
 			}
@@ -66,8 +79,17 @@ public class Format {
 				ss = ss.replaceAll("[()]","");
 				
 				ss = ss.replaceAll(">", "");
-				
-				String newline = ss+','+ pos.toString();
+				String s1 = ss.split("##")[0];
+				String s2 = ss.split("##")[1];
+				String par;
+				Integer v1 = Integer.valueOf(s1.replaceAll("Q", ""));
+				Integer v2 = Integer.valueOf(s2.replaceAll("Q", ""));
+				if(v1<v2){
+					 par = s1+"##" +s2;
+				}else{
+					par = s2 +"##"+ s1;
+				}
+				String newline = par +','+ pos.toString();
 				pw.println(newline);
 				pos = pos+1;
 			}
