@@ -110,7 +110,9 @@ Rank1.2
 /home/mcaballero/pruebas/modelos_autos
 /home/mcaballero/pruebas/paises
 
-
+Similutd Coseno:
+/home/mcaballero/datos/ratings.csv
+/home/mcaballero/pruebas
 
 
  cat part-00000 part-00001 part-00002 part-00003 part-00004 part-00005 part-00006 part-00007 part-00008 part-00009 > union_0_9
