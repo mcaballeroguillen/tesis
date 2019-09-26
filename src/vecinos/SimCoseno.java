@@ -29,9 +29,12 @@ public class SimCoseno {
 	public void Calculate(){
 		String master = "local[*]";
 		 
-		 SparkConf conf = new SparkConf()
-					.setAppName(CountNeightbor.class.getName())
-					.setMaster(master);
+		SparkConf conf = new SparkConf()
+				.setAppName(CountNeightbor.class.getName())
+				.setMaster(master)
+				.set("spark.executor.memory","12g")
+	 			.set("spark.driver.memory", "12g")
+	 			.set("spark.network.timeout", "600s");
 			
 	     	 JavaSparkContext context = new JavaSparkContext(conf);
 			
