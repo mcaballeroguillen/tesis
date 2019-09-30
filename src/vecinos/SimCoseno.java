@@ -4,7 +4,8 @@ import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import java.lang.Math; 
+import java.lang.Math;
+import java.util.Map;
 
 import scala.Tuple3;
 import scala.Tuple2;
@@ -32,6 +33,7 @@ public class SimCoseno {
 		SparkConf conf = new SparkConf()
 				.setAppName(CountNeightbor.class.getName())
 				.setMaster(master)
+				.set("spark.executor.heartbeatInterval","20s")
 				.set("spark.executor.memory","12g")
 	 			.set("spark.driver.memory", "12g")
 	 			.set("spark.network.timeout", "600s");
@@ -71,14 +73,31 @@ public class SimCoseno {
 					f -> f._2()._1()._1()> f._2()._2()._1());
 			
 			/*
+			 * Conteo de tuplas
+			 */
+			JavaPairRDD<Integer,Integer> count = filter.aggregateByKey(1, 
+					(a,b)->a,
+					(a,b)->a+b);
+			
+			/*
+			 * Join con el conteo
+			 */
+			JavaPairRDD<Integer,Tuple2<Integer,Tuple2<Tuple2<Integer,Double>,Tuple2<Integer,Double>>>> join1= count.join(filter);
+			
+			/*
+			 * Filtrar por menor a k.
+			 */
+			
+			JavaPairRDD<Integer,Tuple2<Integer,Tuple2<Tuple2<Integer,Double>,Tuple2<Integer,Double>>>> filter1 = join1.filter(f->f._2()._1()<300);
+			/*
 			 * Creamos para(peli1#peli2,rank1,rank2)
 			 */
-			JavaPairRDD<String,Tuple2<Double,Double>> info = filter.mapToPair(
+			JavaPairRDD<String,Tuple2<Double,Double>> info = filter1.mapToPair(
 					data1->{
-						Integer peli1 = data1._2()._1()._1();
-						Double rank1 = data1._2()._1()._2();
-						Integer peli2 = data1._2()._2()._1();
-						Double rank2 = data1._2()._2()._2();
+						Integer peli1 = data1._2()._2()._1()._1();
+						Double rank1 = data1._2()._2()._1()._2();
+						Integer peli2 = data1._2()._2()._2()._1();
+						Double rank2 = data1._2()._2()._2()._2();
 						String key = peli1.toString() + "##" + peli2.toString();
 						Tuple2<Double,Double> value = new Tuple2<Double,Double>(rank1,rank2);
 						Tuple2<String,Tuple2<Double,Double>> resp = new Tuple2<String,Tuple2<Double,Double>>(key,value);
