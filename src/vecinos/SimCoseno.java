@@ -156,13 +156,13 @@ public class SimCoseno {
 			/*
 			 * Invertimos par para poder ordenar por similitud  coseno
 			 */
-			JavaPairRDD<Double,String> frac_swap = frac.mapToPair(f->f.swap());
+			//JavaPairRDD<Double,String> frac_swap = frac.mapToPair(f->f.swap());
 			/*
 			 * Ordenamos 
 			 */
-			JavaPairRDD<Double,String> frac_sort = frac_swap.sortByKey(false);
+			//JavaPairRDD<Double,String> frac_sort = frac_swap.sortByKey(false);
 			
-			frac_sort.saveAsTextFile(this.directory+"/simcoseno");
+			frac.saveAsTextFile(this.directory+"/simcoseno");
 			context.close();
 	}
 }
