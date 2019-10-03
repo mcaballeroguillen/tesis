@@ -136,3 +136,21 @@ Similutd Coseno:
  cat part-00170 part-00171 part-00172 part-00173 part-00174 part-00175 part-00176 part-00177 part-00178 part-00179 > union_170_179
  cat part-00180 part-00181 part-00182 part-00183 part-00184 part-00185 part-00186 part-00187 part-00188 part-00189 > union_180_189
  cat part-00190 part-00191 part-00192 part-00193 part-00194 part-00195 part-00196 part-00197 part-00198 part-00199 > union_190_199
+ 
+ /*
+			 * Conteo de tuplas
+			 */
+			JavaPairRDD<Integer,Integer> count = filter.aggregateByKey(1, 
+					(a,b)->a,
+					(a,b)->a+b);
+			
+			/*
+			 * Join con el conteo
+			 */
+			JavaPairRDD<Integer,Tuple2<Integer,Tuple2<Tuple2<Integer,Double>,Tuple2<Integer,Double>>>> join1= count.join(filter);
+			
+			/*
+			 * Filtrar por menor a k.
+			 */
+			
+			JavaPairRDD<Integer,Tuple2<Integer,Tuple2<Tuple2<Integer,Double>,Tuple2<Integer,Double>>>> filter1 = join1.filter(f->f._2()._1()<300);

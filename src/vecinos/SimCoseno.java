@@ -5,6 +5,7 @@ import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import java.lang.Math;
+import java.util.ArrayList;
 import java.util.Map;
 
 import scala.Tuple3;
@@ -33,9 +34,9 @@ public class SimCoseno {
 		SparkConf conf = new SparkConf()
 				.setAppName(CountNeightbor.class.getName())
 				.setMaster(master)
-				.set("spark.executor.heartbeatInterval","20s")
-				.set("spark.executor.memory","12g")
-	 			.set("spark.driver.memory", "12g")
+				.set("spark.executor.heartbeatInterval","35s")
+				.set("spark.executor.memory","15g")
+	 			.set("spark.driver.memory", "15g")
 	 			.set("spark.network.timeout", "600s");
 			
 	     	 JavaSparkContext context = new JavaSparkContext(conf);
@@ -73,31 +74,46 @@ public class SimCoseno {
 					f -> f._2()._1()._1()> f._2()._2()._1());
 			
 			/*
-			 * Conteo de tuplas
+			 * Agrupar por llave
 			 */
-			JavaPairRDD<Integer,Integer> count = filter.aggregateByKey(1, 
-					(a,b)->a,
-					(a,b)->a+b);
+			JavaPairRDD<Integer,Iterable<Tuple2<Tuple2<Integer,Double>,Tuple2<Integer,Double>>>> list = filter.groupByKey();
 			
 			/*
-			 * Join con el conteo
+			 * Filtrar listas menores que k.
 			 */
-			JavaPairRDD<Integer,Tuple2<Integer,Tuple2<Tuple2<Integer,Double>,Tuple2<Integer,Double>>>> join1= count.join(filter);
+			JavaPairRDD<Integer,Iterable<Tuple2<Tuple2<Integer,Double>,Tuple2<Integer,Double>>>> list_filter = list.flatMapToPair(
+				tuple ->{
+					ArrayList<Tuple2<Integer,Iterable<Tuple2<Tuple2<Integer,Double>,Tuple2<Integer,Double>>>>> base = new ArrayList<Tuple2<Integer,Iterable<Tuple2<Tuple2<Integer,Double>,Tuple2<Integer,Double>>>>>();
+					Integer cont = 0;
+					for(Tuple2<Tuple2<Integer,Double>,Tuple2<Integer,Double>> tt: tuple._2()){
+						cont=cont+1;
+						if(cont>500){break;}
+						}
+					if(cont<500){
+						base.add(tuple);
+					}
+					return base.iterator();
+				});
 			
-			/*
-			 * Filtrar por menor a k.
-			 */
-			
-			JavaPairRDD<Integer,Tuple2<Integer,Tuple2<Tuple2<Integer,Double>,Tuple2<Integer,Double>>>> filter1 = join1.filter(f->f._2()._1()<300);
+			JavaPairRDD<Integer,Tuple2<Tuple2<Integer,Double>,Tuple2<Integer,Double>>> filter_convert = list_filter.flatMapToPair(
+					tuple->{
+						ArrayList<Tuple2<Integer,Tuple2<Tuple2<Integer,Double>,Tuple2<Integer,Double>>>> base = new ArrayList<Tuple2<Integer,Tuple2<Tuple2<Integer,Double>,Tuple2<Integer,Double>>>> ();
+						for (Tuple2<Tuple2<Integer,Double>,Tuple2<Integer,Double>> value: tuple._2()){
+							Tuple2<Integer,Tuple2<Tuple2<Integer,Double>,Tuple2<Integer,Double>>> resp = new Tuple2<Integer,Tuple2<Tuple2<Integer,Double>,Tuple2<Integer,Double>>> (tuple._1,value);
+							base.add(resp);
+						}
+						return base.iterator();
+						
+					});
 			/*
 			 * Creamos para(peli1#peli2,rank1,rank2)
 			 */
-			JavaPairRDD<String,Tuple2<Double,Double>> info = filter1.mapToPair(
+			JavaPairRDD<String,Tuple2<Double,Double>> info = filter_convert.mapToPair(
 					data1->{
-						Integer peli1 = data1._2()._2()._1()._1();
-						Double rank1 = data1._2()._2()._1()._2();
-						Integer peli2 = data1._2()._2()._2()._1();
-						Double rank2 = data1._2()._2()._2()._2();
+						Integer peli1 = data1._2()._1()._1();
+						Double rank1 = data1._2()._1()._2();
+						Integer peli2 = data1._2()._2()._1();
+						Double rank2 = data1._2()._2()._2();
 						String key = peli1.toString() + "##" + peli2.toString();
 						Tuple2<Double,Double> value = new Tuple2<Double,Double>(rank1,rank2);
 						Tuple2<String,Tuple2<Double,Double>> resp = new Tuple2<String,Tuple2<Double,Double>>(key,value);
@@ -156,13 +172,13 @@ public class SimCoseno {
 			/*
 			 * Invertimos par para poder ordenar por similitud  coseno
 			 */
-			//JavaPairRDD<Double,String> frac_swap = frac.mapToPair(f->f.swap());
+			JavaPairRDD<Double,String> frac_swap = frac.mapToPair(f->f.swap());
 			/*
 			 * Ordenamos 
 			 */
-			//JavaPairRDD<Double,String> frac_sort = frac_swap.sortByKey(false);
+			JavaPairRDD<Double,String> frac_sort = frac_swap.sortByKey(false);
 			
-			frac.saveAsTextFile(this.directory+"/simcoseno");
+			frac_sort.saveAsTextFile(this.directory+"/simcoseno");
 			context.close();
 	}
 }
