@@ -26,8 +26,7 @@ public class Extract_MovieLends {
 	 * 
 	 * @param Dicc: Diccionario de wikidadta a imdb
 	 * @param links:  Archivo de movielends con imdb.
-	 * @param Ranting: Archivo de movielends con calificaciones.
-	 * @param director: Directorio a guardar info. 
+	 *  @param director: Directorio a guardar info. 
 	 */
 	public Extract_MovieLends(String Dicc, String links, String director){
 		this.file_Dicc = Dicc;

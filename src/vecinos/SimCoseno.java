@@ -64,51 +64,53 @@ public class SimCoseno {
 					tripleta -> new Tuple2<Integer,Tuple2<Integer,Double>>(tripleta._1(),new Tuple2<Integer,Double>(tripleta._2(),tripleta._3())));
 			
 			/*
+			 * Agrupamos por usario
+			 */
+			JavaPairRDD<Integer,Iterable<Tuple2<Integer,Double>>> grup = Par.groupByKey();
+			
+			/*
+			 * Filtramos los usarios con menos de k calificaciones.
+			 */
+			JavaPairRDD<Integer,Iterable<Tuple2<Integer,Double>>>  filter_k  = grup.flatMapToPair(
+					tuple->{
+						ArrayList<Tuple2<Integer,Iterable<Tuple2<Integer,Double>>>> datos = new  ArrayList<Tuple2<Integer,Iterable<Tuple2<Integer,Double>>>>();
+						Integer cont = 0;
+						for(Tuple2<Integer,Double> par : tuple._2){
+							cont=cont+1;
+							if(cont>500){break;}
+						}
+						if(cont<=500){
+							datos.add(tuple);
+						}
+						return datos.iterator();
+					});
+			/*
+			 * Volmemos a mapear
+			 */
+			JavaPairRDD<Integer,Tuple2<Integer,Double>> new_Par = filter_k.flatMapToPair(
+					tuple->{
+						ArrayList<Tuple2<Integer,Tuple2<Integer,Double>>> datos = new ArrayList<Tuple2<Integer,Tuple2<Integer,Double>>>();
+						for(Tuple2<Integer,Double>  par: tuple._2){
+							Tuple2<Integer,Tuple2<Integer,Double>> resp = new Tuple2<Integer,Tuple2<Integer,Double>>(tuple._1,par);
+							datos.add(resp);
+						}
+						return datos.iterator();
+					});
+			/*
 			 * Join devuelve (user,((peli1,cal1),peli2,cal2))
 			 */
-			JavaPairRDD<Integer,Tuple2<Tuple2<Integer,Double>,Tuple2<Integer,Double>>> join = Par.join(Par);
+			JavaPairRDD<Integer,Tuple2<Tuple2<Integer,Double>,Tuple2<Integer,Double>>> join = new_Par.join(new_Par);
 			/*
 			 * Filtrando donde peli1> peli2
 			 */
 			JavaPairRDD<Integer,Tuple2<Tuple2<Integer,Double>,Tuple2<Integer,Double>>> filter = join.filter(
 					f -> f._2()._1()._1()> f._2()._2()._1());
 			
-			/*
-			 * Agrupar por llave
-			 */
-			JavaPairRDD<Integer,Iterable<Tuple2<Tuple2<Integer,Double>,Tuple2<Integer,Double>>>> list = filter.groupByKey();
 			
-			/*
-			 * Filtrar listas menores que k.
-			 */
-			JavaPairRDD<Integer,Iterable<Tuple2<Tuple2<Integer,Double>,Tuple2<Integer,Double>>>> list_filter = list.flatMapToPair(
-				tuple ->{
-					ArrayList<Tuple2<Integer,Iterable<Tuple2<Tuple2<Integer,Double>,Tuple2<Integer,Double>>>>> base = new ArrayList<Tuple2<Integer,Iterable<Tuple2<Tuple2<Integer,Double>,Tuple2<Integer,Double>>>>>();
-					Integer cont = 0;
-					for(Tuple2<Tuple2<Integer,Double>,Tuple2<Integer,Double>> tt: tuple._2()){
-						cont=cont+1;
-						if(cont>500){break;}
-						}
-					if(cont<500){
-						base.add(tuple);
-					}
-					return base.iterator();
-				});
-			
-			JavaPairRDD<Integer,Tuple2<Tuple2<Integer,Double>,Tuple2<Integer,Double>>> filter_convert = list_filter.flatMapToPair(
-					tuple->{
-						ArrayList<Tuple2<Integer,Tuple2<Tuple2<Integer,Double>,Tuple2<Integer,Double>>>> base = new ArrayList<Tuple2<Integer,Tuple2<Tuple2<Integer,Double>,Tuple2<Integer,Double>>>> ();
-						for (Tuple2<Tuple2<Integer,Double>,Tuple2<Integer,Double>> value: tuple._2()){
-							Tuple2<Integer,Tuple2<Tuple2<Integer,Double>,Tuple2<Integer,Double>>> resp = new Tuple2<Integer,Tuple2<Tuple2<Integer,Double>,Tuple2<Integer,Double>>> (tuple._1,value);
-							base.add(resp);
-						}
-						return base.iterator();
-						
-					});
 			/*
 			 * Creamos para(peli1#peli2,rank1,rank2)
 			 */
-			JavaPairRDD<String,Tuple2<Double,Double>> info = filter_convert.mapToPair(
+			JavaPairRDD<String,Tuple2<Double,Double>> info = filter.mapToPair(
 					data1->{
 						Integer peli1 = data1._2()._1()._1();
 						Double rank1 = data1._2()._1()._2();

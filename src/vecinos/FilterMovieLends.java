@@ -31,7 +31,10 @@ public class FilterMovieLends {
 		this.Directorio = direct;
 		this.pelis= new TreeSet<String>();
 	}
-	
+	/**
+	 * Filtrar las calificaciones de las peliculas seleccionadas.
+	 * @throws IOException
+	 */
 	public void filter() throws IOException{
 		File enlace = new File(this.File_enlace);
 		FileReader fr = new FileReader(enlace);
