@@ -82,6 +82,7 @@ public class Format {
 				String s1 = ss.split("##")[0];
 				String s2 = ss.split("##")[1];
 				String par;
+				if(s1.equals("null") || s2.equals("null") ){continue;}
 				Integer v1 = Integer.valueOf(s1.replaceAll("Q", ""));
 				Integer v2 = Integer.valueOf(s2.replaceAll("Q", ""));
 				if(v1<v2){

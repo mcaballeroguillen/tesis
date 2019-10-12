@@ -66,7 +66,7 @@ dcc
 
 java -jar -Xms5G contador.jar /home/mcaballero/pruebas/peliculas/reduce/interseption3_500/union  /home/mcaballero/pruebas/peliculas/reduce/interseption_500/union  /home/mcaballero/pruebas/peliculas/reduce &> salida_contador
 
-java -jar -Xms15G normal_500.jar /home/mcaballero/datos/wikidata-20190731-truthy.nt.gz /home/mcaballero/pruebas/peliculas/reduce "<http://www.wikidata.org/entity/Q6256>" 0 &> salidasss
+java -jar -Xms15G normal_500.jar /home/mcaballero/datos/wikidata-20190731-truthy.nt.gz /home/mcaballero/pruebas/peliculas "<http://www.wikidata.org/entity/Q6256>" 0 &> salidasss
 
 
 java -jar -Xms13G -XX:-UseGCOverheadLimit  tesis_v4.jar /home/mcaballero/datos/wikidata-20190704-truthy-BETA.nt.gz /home/mcaballero/pruebas/resotarms "<http://www.wikidata.org/entity/Q18509232>" 0 &> salida.txt
@@ -87,17 +87,17 @@ CountNeightbor_1 contador = new CountNeightbor_1(args[1]);
 contador.count();
 			
 Rank1			
-/home/mcaballero/pruebas/peliculas/reduce/result_probalistic_500/union
-/home/mcaballero/pruebas/peliculas/reduce/result_probalistic_500/
+/home/mcaballero/pruebas/peliculas/result_probalistic_500/union
+/home/mcaballero/pruebas/peliculas/result_probalistic_500/
 Rank2
 /home/mcaballero/pruebas/peliculas/reduce/incluidos/union
 /home/mcaballero/pruebas/peliculas/reduce/incluidos/
 Rank1.2
-/home/mcaballero/pruebas/peliculas/reduce/result_norm_500/union
-/home/mcaballero/pruebas/peliculas/reduce/result_norm_500/
+/home/mcaballero/pruebas/peliculas/result_norm_500/union
+/home/mcaballero/pruebas/peliculas/result_norm_500/
 
 
-/home/mcaballero/pruebas/peliculas/reduce/result_probalistic_500/rank1.txt
+/home/mcaballero/pruebas/peliculas/result_probalistic_500/rank1.txt
 /home/mcaballero/pruebas/peliculas/reduce/incluidos/rank2.txt
 /home/mcaballero/pruebas/peliculas/reduce/result_norm_500/rank1.txt
 
@@ -138,3 +138,8 @@ Similutd Coseno:
  cat part-00190 part-00191 part-00192 part-00193 part-00194 part-00195 part-00196 part-00197 part-00198 part-00199 > union_190_199
 
 /home/mcaballero/datos/dicc.csv  /home/mcaballero/datos/links.csv /home/mcaballero/pruebas/simcoseno/union /home/mcaballero/pruebas/simcoseno
+/home/mcaballero/pruebas/simcoseno/simcoseno_wiki.txt
+
+/home/mcaballero/pruebas/simcoseno/rank2.txt
+/home/mcaballero/pruebas/peliculas/result_probalistic_500/rank1.txt
+
