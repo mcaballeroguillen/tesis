@@ -77,9 +77,11 @@ public class SimCoseno {
 						Integer cont = 0;
 						for(Tuple2<Integer,Double> par : tuple._2){
 							cont=cont+1;
-							if(cont>500){break;}
+							if(cont>800){
+								 System.out.println("Eliminado");
+								break;}
 						}
-						if(cont<=500){
+						if(cont<=800){
 							datos.add(tuple);
 						}
 						return datos.iterator();
@@ -121,7 +123,11 @@ public class SimCoseno {
 						Tuple2<String,Tuple2<Double,Double>> resp = new Tuple2<String,Tuple2<Double,Double>>(key,value);
 						return resp;
 					});
-			
+			/*
+			 * Contar cuantos usuarios hay por par de pelis.
+			 */
+			JavaPairRDD<String,Integer> conteo = info.aggregateByKey(1, 
+					(a,b)->a, (a,b)->a+b);
 			/*
 			 *  Multiplicamos coordenda por coordenada (peli1##peli2,rank1*rank2)
 			 */
@@ -172,15 +178,30 @@ public class SimCoseno {
 			 */
 			JavaPairRDD<String,Double> frac = frac_1.mapValues(f->f._1()/f._2());
 			/*
-			 * Invertimos par para poder ordenar por similitud  coseno
+			 * Agregar Conteo (peli1##peli2,(frac,conteo))
 			 */
-			JavaPairRDD<Double,String> frac_swap = frac.mapToPair(f->f.swap());
-			/*
-			 * Ordenamos 
-			 */
-			JavaPairRDD<Double,String> frac_sort = frac_swap.sortByKey(false);
 			
-			frac_sort.saveAsTextFile(this.directory+"/simcoseno");
+			JavaPairRDD<String,Tuple2<Double,Integer>> triple =  frac.join(conteo);
+			/*
+			 * Filtramos pares de peliculas con menos de 4 calificaciones.
+			 */
+			
+			JavaPairRDD<String,Tuple2<Double,Integer>> filter_c = triple.filter(f-> f._2._2>4);
+			/*
+			 * Invertimos para ordenar por simcoseno
+			 */
+			JavaPairRDD<Double,Tuple2<String,Integer>> inver = filter_c.mapToPair(
+					tuple->{
+						Tuple2<String,Integer> value = new Tuple2<String,Integer>(tuple._1(),tuple._2._2());
+						Tuple2<Double,Tuple2<String,Integer>> resp = new Tuple2<Double,Tuple2<String,Integer>>(tuple._2._1(),value);
+						return resp;
+					});
+			/*
+			 * Ordenamos
+			 */
+			JavaPairRDD<Double,Tuple2<String,Integer>> sort = inver.sortByKey(false);
+			
+			sort.saveAsTextFile(this.directory+"/simcoseno");
 			context.close();
 	}
 }
