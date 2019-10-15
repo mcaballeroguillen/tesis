@@ -77,11 +77,11 @@ public class SimCoseno {
 						Integer cont = 0;
 						for(Tuple2<Integer,Double> par : tuple._2){
 							cont=cont+1;
-							if(cont>800){
+							if(cont>1000){
 								 System.out.println("Eliminado");
 								break;}
 						}
-						if(cont<=800){
+						if(cont<=1000){
 							datos.add(tuple);
 						}
 						return datos.iterator();
@@ -186,7 +186,7 @@ public class SimCoseno {
 			 * Filtramos pares de peliculas con menos de 4 calificaciones.
 			 */
 			
-			JavaPairRDD<String,Tuple2<Double,Integer>> filter_c = triple.filter(f-> f._2._2>4);
+			JavaPairRDD<String,Tuple2<Double,Integer>> filter_c = triple.filter(f-> f._2._2>7);
 			/*
 			 * Invertimos para ordenar por simcoseno
 			 */
