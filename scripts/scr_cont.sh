@@ -8,7 +8,7 @@ java -jar -Xms15G contador.jar /home/mcaballero/pruebas/comidas/interseption3_16
 
 java -jar -Xms15G contador.jar /home/mcaballero/pruebas/comidas/interseption3_32/union  /home/mcaballero/pruebas/comidas/interseption_32/union  /home/mcaballero/pruebas/comidas/interseption3_32 &> salida_32
 
-java -jar -Xms15G contador.jar /home/mcaballero/pruebas/comidas/interseption3_64/union  /home/mcaballero/pruebas/comidas/interseption_64/union  /home/mcaballero/pruebas/comidas/interseption3_64 &> salida_64
+java -jar -Xms15G contador.jar /home/mcaballero/pruebas/peliculas/interseption3_64/union  /home/mcaballero/pruebas/peliculas/interseption_64/union  /home/mcaballero/pruebas/peliculas/interseption3_64 &> salida_64
 
 java -jar -Xms15G contador.jar /home/mcaballero/pruebas/comidas/interseption3_128/union  /home/mcaballero/pruebas/comidas/interseption_128/union  /home/mcaballero/pruebas/comidas/interseption3_128 &> salida_128
 

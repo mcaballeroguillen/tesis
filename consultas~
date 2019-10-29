@@ -97,7 +97,7 @@ Rank1.2
 /home/mcaballero/pruebas/peliculas/result_norm_500/
 
 
-/home/mcaballero/pruebas/peliculas/result_probalistic_500//rank1.txt
+/home/mcaballero/pruebas/peliculas/result_probalistic_500/rank1.txt
 /home/mcaballero/pruebas/peliculas/reduce/incluidos/rank2.txt
 /home/mcaballero/pruebas/peliculas/reduce/result_norm_500/rank1.txt
 
@@ -141,5 +141,7 @@ Similutd Coseno:
 /home/mcaballero/pruebas/simcoseno/simcoseno_wiki.txt
 
 /home/mcaballero/pruebas/simcoseno/rank2.txt
-/home/mcaballero/pruebas/peliculas/result_norm_500/rank1.txt 
+/home/mcaballero/pruebas/peliculas/rank2.txt
+
+/home/mcaballero/pruebas/peliculas/interseption3_64/incluidos/union
 
