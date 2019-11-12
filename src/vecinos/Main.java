@@ -7,7 +7,7 @@ public class Main {
 	public static void main(String[] args) throws IOException{
 		try{
 			if(args.length!=4){
-				System.out.println("Debe ingresar: Dirección WIKIDATA, Directorio de Trabajo, Tipo de la busqueda,límite de tuplas.");
+				System.out.println("Debe ingresar: Dirección WIKIDATA, Directorio de Trabajo, Tipo de la busqueda..");
 				System.exit(-1);
 			}
 			System.out.println("Star");

@@ -66,7 +66,7 @@ dcc
 
 java -jar -Xms5G contador.jar /home/mcaballero/pruebas/peliculas/reduce/interseption3_500/union  /home/mcaballero/pruebas/peliculas/reduce/interseption_500/union  /home/mcaballero/pruebas/peliculas/reduce &> salida_contador
 
-java -jar -Xms15G normal_500.jar /home/mcaballero/datos/wikidata-20190731-truthy.nt.gz /home/mcaballero/pruebas/musica "<http://www.wikidata.org/entity/Q482994>" 0 &> salidasss
+java -jar -Xms15G normal_500.jar /home/mcaballero/datos/wikidata-20190731-truthy.nt.gz /home/mcaballero/pruebas/peliculas "<http://www.wikidata.org/entity/Q482994>" 0 &> salidasss
 
 
 java -jar -Xms13G -XX:-UseGCOverheadLimit  tesis_v4.jar /home/mcaballero/datos/wikidata-20190704-truthy-BETA.nt.gz /home/mcaballero/pruebas/resotarms "<http://www.wikidata.org/entity/Q18509232>" 0 &> salida.txt
@@ -145,3 +145,6 @@ Similutd Coseno:
 
 /home/mcaballero/pruebas/peliculas/interseption3_64/incluidos/union
 
+Extrac_ local:
+
+/home/mcaballero/pruebas/peliculas/interseption3_64/union 2  /home/mcaballero/pruebas/peliculas/interseption3_64 1 Q44578
