@@ -66,7 +66,7 @@ dcc
 
 java -jar -Xms5G contador.jar /home/mcaballero/pruebas/peliculas/reduce/interseption3_500/union  /home/mcaballero/pruebas/peliculas/reduce/interseption_500/union  /home/mcaballero/pruebas/peliculas/reduce &> salida_contador
 
-java -jar -Xms15G normal_500.jar /home/mcaballero/datos/wikidata-20190731-truthy.nt.gz /home/mcaballero/pruebas/peliculas "<http://www.wikidata.org/entity/Q482994>" 0 &> salidasss
+java -jar -Xms15G normal_500.jar /home/mcaballero/datos/wikidata-20190731-truthy.nt.gz /home/mcaballero/pruebas/music "<http://www.wikidata.org/entity/Q482994>" 0 &> salidasss
 
 
 java -jar -Xms13G -XX:-UseGCOverheadLimit  tesis_v4.jar /home/mcaballero/datos/wikidata-20190704-truthy-BETA.nt.gz /home/mcaballero/pruebas/resotarms "<http://www.wikidata.org/entity/Q18509232>" 0 &> salida.txt
@@ -87,21 +87,26 @@ CountNeightbor_1 contador = new CountNeightbor_1(args[1]);
 contador.count();
 			
 Rank1			
-/home/mcaballero/pruebas/peliculas/result_probalistic_500/union
+/home/mcaballero/pruebas/peliculas/result_probalistic_500/rank_Q44578.txt
 /home/mcaballero/pruebas/peliculas/result_probalistic_500/
 Rank2
-/home/mcaballero/pruebas/peliculas/reduce/incluidos/union
-/home/mcaballero/pruebas/peliculas/reduce/incluidos/
+/home/mcaballero/pruebas/peliculas/interseption3_64/rank_Q44578.txt
+/home/mcaballero/pruebas/peliculas/interseption3_64/
 Rank1.2
-/home/mcaballero/pruebas/peliculas/result_norm_500/union
+/home/mcaballero/pruebas/peliculas/result_norm_500/rank_Q44578.txt
 /home/mcaballero/pruebas/peliculas/result_norm_500/
 
+Ramk 2.2:
+/home/mcaballero/pruebas/simcoseno/rank_Q44578.txt
+/home/mcaballero/pruebas/simcoseno/
 
 /home/mcaballero/pruebas/peliculas/result_probalistic_500/rank1.txt
-/home/mcaballero/pruebas/peliculas/reduce/incluidos/rank2.txt
-/home/mcaballero/pruebas/peliculas/reduce/result_norm_500/rank1.txt
+/home/mcaballero/pruebas/peliculas/interseption3_64/rank2.txt
+/home/mcaballero/pruebas/peliculas/result_norm_500/rank1.txt
+/home/mcaballero/pruebas/simcoseno/rank2.txt
 
-/home/mcaballero/pruebas/peliculas/reduce/simrak/simrank.txt
+
+
 
 
 /home/mcaballero/pruebas/universidades
@@ -147,4 +152,4 @@ Similutd Coseno:
 
 Extrac_ local:
 
-/home/mcaballero/pruebas/peliculas/interseption3_64/union 2  /home/mcaballero/pruebas/peliculas/interseption3_64 1 Q44578
+/home/mcaballero/pruebas/simcoseno/simcoseno_wiki.txt 2  /home/mcaballero/pruebas/simcoseno 1 Q44578
