@@ -7,6 +7,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry exported="true" kind="lib" path="/home/marco/WIKIDATA/nxparser-parsers-2.3.3.jar"/>
+	<classpathentry kind="lib" path="/home/marco/workspace/Tesis /webla.zip"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
