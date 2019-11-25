@@ -97,7 +97,7 @@ Rank1.2
 /home/mcaballero/pruebas/peliculas/result_norm_500/
 
 Ramk 2.2:
-/home/mcaballero/pruebas/simcoseno/rank_Q1758112.txt
+/home/mcaballero/pruebas/simcoseno/rank_Q184843.txt
 /home/mcaballero/pruebas/simcoseno/
 
 /home/mcaballero/pruebas/peliculas/result_probalistic_500/rank1.txt
@@ -152,4 +152,4 @@ Similutd Coseno:
 
 Extrac_ local:
 
-/home/mcaballero/pruebas/peliculas/result_probalistic_500/union 1  /home/mcaballero/pruebas/peliculas/result_probalistic_500  2 Q184843 Q1758112
+/home/mcaballero/pruebas/simcoseno/simcoseno_wiki.txt 2  /home/mcaballero/pruebas/simcoseno  3 Q184843 Q1758112 Q44578

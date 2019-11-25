@@ -13,7 +13,7 @@ public static void prueba(){
 	ss = new WebGraph();
 	ss.addLink("A", "B", 1.0);
 	ss.addLink("B", "C", 1.0);
-	ss.addLink("A", "C", 1.0);
+	ss.addLink("C", "A", 1.0);
 	ss.addLink("C", "D", 1.0);
 	
 	SimRank simi = new SimRank(ss);

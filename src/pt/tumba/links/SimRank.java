@@ -36,6 +36,7 @@ public class SimRank {
 				aux.put(new Integer(j), new Double(-1));
 			scores.put(new Integer(i), aux);
 		}
+		
 	}
 
 	/**
@@ -129,8 +130,8 @@ public class SimRank {
 					 (newScores.get(new Integer(j))));
 			}
 		}
+		
 		System.out.print(this.scores.toString());
-		System.out.print(this.graph.URLToIdentifyer.toString());
 	}
 
 	/**
@@ -194,16 +195,20 @@ public class SimRank {
 	 * @see WebGraph.IdentifyerToURL()
 	 */
 	private Double simRank(Integer id1, Integer id2) {
-		if (id1.equals(id2))
-			return new Double(1);
+		System.out.print(id1.toString()+id2.toString()+'\n');
+		if (id1==id2){
+			return new Double(1);}
 		if (id2.intValue() > id1.intValue()) {
-			//Integer id3 = id1;
+			Integer id3 = id1;
 			id1 = id2;
-			id2 = id1;
+			id2 = id3;
 		}
-		System.out.print(id1.toString()+id2.toString());
-		Double aux = (( (scores.get(id1))).get(id2));
-		if (aux.intValue() < 0) {
+		
+		Double aux = this.scores.get(id1).get(id2);
+	
+		
+	
+		if (aux < 0) {
 			computeSimRank();
 			return simRank(id1, id2);
 		}
