@@ -16,6 +16,12 @@ public static void prueba(){
 	ss.addLink("C", "A", 1.0);
 	ss.addLink("C", "D", 1.0);
 	
+	
+	ss.addLink("A", "A", 1.0);
+	ss.addLink("B", "B", 1.0);
+	ss.addLink("C", "C", 1.0);
+	ss.addLink("D", "D", 1.0);
+	
 	SimRank simi = new SimRank(ss);
 	simi.computeSimRank();
 	System.out.print(simi.simRank("A", "C"));

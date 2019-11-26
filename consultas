@@ -153,3 +153,6 @@ Similutd Coseno:
 Extrac_ local:
 
 /home/mcaballero/pruebas/simcoseno/simcoseno_wiki.txt 2  /home/mcaballero/pruebas/simcoseno  3 Q184843 Q1758112 Q44578
+
+WebGraph:
+/home/mcaballero/pruebas/paises/result_test.txt /home/mcaballero/pruebas/paises
