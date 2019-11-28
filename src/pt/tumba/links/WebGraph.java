@@ -26,7 +26,7 @@ public class WebGraph {
 	private Map<Integer, String> IdentifyerToURL;
 	
 	/** A Map storing relationships from URLs to numeric identifiers, usefull for storing Web graphs */
-	public Map<String,Map<String,Integer>> URLToIdentifyer;
+	private Map<String,Map<String,Integer>> URLToIdentifyer;
 
 	/**
 	 *  A Map storing InLinks. For each identifyer (the key), another Map is stored,
@@ -84,6 +84,7 @@ public class WebGraph {
 					strength = new Double(url2.substring(index1+1).trim());
 					url2 = url2.substring(0,index1).trim(); 
 				} catch ( Exception e ) {}
+				System.out.println(url1 + "  "+url2+"  "+ strength.toString());
 				addLink (url1,url2,strength);
 			}
 		}
@@ -140,8 +141,8 @@ public class WebGraph {
 			else if(link.startsWith("ftp://")) index = 6;
 			index2 = link.substring(index).indexOf("/");
 			if(index2!=-1) {
-				name = link.substring(index+index2+1);
-				host = link.substring(0,index+index2);
+				host = link;
+				name = "";;
 			} else {
 				host = link;
 				name = "";
@@ -171,6 +172,7 @@ public class WebGraph {
 		addLink(toLink);
 		Integer id1 = URLToIdentifyer(fromLink);
 		Integer id2 = URLToIdentifyer(toLink); 
+		
 		return addLink(id1,id2,weight);
 	}
 

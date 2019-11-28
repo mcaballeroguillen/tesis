@@ -1,6 +1,15 @@
 package vecinos;
 
 import pt.tumba.links.WebGraph;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
+import java.io.IOException;
+
+
 import pt.tumba.links.SimRank;
 public class _Simiss {
 private static WebGraph ss; 
@@ -21,13 +30,36 @@ public static void prueba(){
 	ss.addLink("B", "B", 1.0);
 	ss.addLink("C", "C", 1.0);
 	ss.addLink("D", "D", 1.0);
-	
+	System.out.println(ss.numNodes());
 	SimRank simi = new SimRank(ss);
 	simi.computeSimRank();
 	System.out.print(simi.simRank("A", "C"));
 }
 
-public static void main(String[] args){
-	prueba();
+public static void create_file(String file) throws FileNotFoundException, IOException{
+	File archivo_in = new File(file);
+	ss = new WebGraph();
+	FileReader fr = new FileReader(archivo_in);
+	BufferedReader br = new BufferedReader(fr);
+	String linea;
+	
+	while((linea=br.readLine())!=null){
+	String[] data0 = linea.split("->");
+	String[] data1 = data0[1].split(" ");
+	String ent0= data0[0];
+	String ent1 = data1[0];
+	Double weg = Double.valueOf(data1[1]);
+	System.out.println(ent0+"  "+ent1+" "+ weg);
+	ss.addLink(ent0, ent1, weg);
+	}
+	br.close();
+}
+public static void main(String[] args) throws FileNotFoundException, IOException{
+	if (args.length != 2){
+		System.out.println("Debe Ingresar archivo y directorio final");
+		System.exit(-1);
+	}
+	create_file(args[0]);
+	System.out.println(ss.numNodes());
 }
 }

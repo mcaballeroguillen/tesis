@@ -186,7 +186,7 @@ public class SimCoseno {
 			 * Filtramos pares de peliculas con menos de 4 calificaciones.
 			 */
 			
-			JavaPairRDD<String,Tuple2<Double,Integer>> filter_c = triple.filter(f-> f._2._2>50);
+			JavaPairRDD<String,Tuple2<Double,Integer>> filter_c = triple.filter(f-> f._2._2>100);
 			/*
 			 * Invertimos para ordenar por simcoseno
 			 */

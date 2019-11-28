@@ -156,3 +156,6 @@ Extrac_ local:
 
 WebGraph:
 /home/mcaballero/pruebas/paises/result_test.txt /home/mcaballero/pruebas/paises
+
+SimRank:
+/home/mcaballero/pruebas/paises/webgraph.txt /home/mcaballero/pruebas/paises
