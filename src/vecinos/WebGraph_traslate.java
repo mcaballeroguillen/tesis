@@ -31,7 +31,7 @@ public class WebGraph_traslate {
 				System.out.println("Problema en split");
 				System.out.println(linea);
 				System.out.println(data.length);
-				System.exit(-1);
+				continue;
 			}
 			String ent1= data[0];
 			String ent2= data[2];

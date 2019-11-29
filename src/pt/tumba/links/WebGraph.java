@@ -23,7 +23,7 @@ import java.util.*;
 public class WebGraph {
 
 	/** A Map storing relationships from numeric identifiers to URLs, usefull for storing Web graphs */
-	private Map<Integer, String> IdentifyerToURL;
+	public Map<Integer, String> IdentifyerToURL;
 	
 	/** A Map storing relationships from URLs to numeric identifiers, usefull for storing Web graphs */
 	private Map<String,Map<String,Integer>> URLToIdentifyer;
@@ -133,7 +133,7 @@ public class WebGraph {
 	public void addLink (String link) {
 		Integer id = URLToIdentifyer(link);
 		if(id==null) {
-			id = new Integer(++nodeCount);
+			id = new Integer(nodeCount++);
 			String host;
 			String name;
 			int index = 0 , index2 = 0;

@@ -195,7 +195,9 @@ public class SimRank {
 	 * @see WebGraph.IdentifyerToURL()
 	 */
 	private Double simRank(Integer id1, Integer id2) {
-		System.out.print(id1.toString()+id2.toString()+'\n');
+		//System.out.println(this.graph.IdentifyerToURL.toString());
+		//System.out.println(this.scores);
+		//System.out.print(id1.toString()+id2.toString()+'\n');
 		if (id1==id2){
 			return new Double(1);}
 		if (id2.intValue() > id1.intValue()) {
