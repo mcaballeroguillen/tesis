@@ -24,8 +24,7 @@ public class WebGraph_traslate {
 		String linea;
 		
 		while((linea=br.readLine())!=null){
-						
-			String[] data = linea.split("\\s+");
+			String[] data = linea.split("\\t+");
 			if(data.length!=3){
 				
 				System.out.println("Problema en split");

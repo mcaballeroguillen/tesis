@@ -87,17 +87,17 @@ CountNeightbor_1 contador = new CountNeightbor_1(args[1]);
 contador.count();
 			
 Rank1			
-/home/mcaballero/pruebas/peliculas/result_probalistic_500/rank_Q1758112.txt
+/home/mcaballero/pruebas/peliculas/result_probalistic_500/rank_Q80959.txt
 /home/mcaballero/pruebas/peliculas/result_probalistic_500/
 Rank2
-/home/mcaballero/pruebas/peliculas/interseption3_64/rank_Q1758112.txt
+/home/mcaballero/pruebas/peliculas/interseption3_64/rank_Q80959.txt
 /home/mcaballero/pruebas/peliculas/interseption3_64/
 Rank1.2
-/home/mcaballero/pruebas/peliculas/result_norm_500/rank_Q1758112.txt
+/home/mcaballero/pruebas/peliculas/result_norm_500/rank_Q80959.txt
 /home/mcaballero/pruebas/peliculas/result_norm_500/
 
 Ramk 2.2:
-/home/mcaballero/pruebas/simcoseno/rank_Q1758112.txt
+/home/mcaballero/pruebas/simcoseno/rank_Q184843.txt
 /home/mcaballero/pruebas/simcoseno/
 
 /home/mcaballero/pruebas/peliculas/result_probalistic_500/rank1.txt
@@ -152,4 +152,13 @@ Similutd Coseno:
 
 Extrac_ local:
 
-/home/mcaballero/pruebas/simcoseno/simcoseno_wiki.txt 2  /home/mcaballero/pruebas/simcoseno  3 Q184843 Q1758112 Q44578
+/home/mcaballero/pruebas/peliculas/interseption3_64/union 2  /home/mcaballero/pruebas/peliculas/interseption3_64  1 Q80959
+
+WebGraph:
+/home/mcaballero/pruebas/paises/result10_1000.txt /home/mcaballero/pruebas/paises
+
+SimRank:
+/home/mcaballero/pruebas/paises/webgraph.txt /home/mcaballero/pruebas/paises/entetys.txt /home/mcaballero/pruebas/paises
+
+Reduce Extract:
+/home/mcaballero/pruebas/paises/result.txt /home/mcaballero/pruebas/paises/ 10 1000
