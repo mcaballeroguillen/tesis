@@ -131,7 +131,7 @@ public class SimRank {
 			}
 		}
 		
-		System.out.print(this.scores.toString());
+		
 	}
 
 	/**
