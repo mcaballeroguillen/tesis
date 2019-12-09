@@ -162,3 +162,6 @@ SimRank:
 
 Reduce Extract:
 /home/mcaballero/pruebas/paises/result.txt /home/mcaballero/pruebas/paises/ 10 1000
+
+WebGraph inver:
+/home/mcaballero/pruebas/paises/simrank.txt /home/mcaballero/pruebas/paises/entetys.txt /home/mcaballero/pruebas/paises

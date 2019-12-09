@@ -8,13 +8,20 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import java.util.HashMap;
-
+/**
+ * Clase para tranformar grafo de wikidata a formato WebGraph
+ * @author marco
+ *
+ */
 
 public class WebGraph_traslate {
 	private static HashMap<String,String> entidades;
 	private static String result_file;
 	private static String output_directory;
-	
+	/**
+	 * Transformar el grafo
+	 * @throws IOException
+	 */
 	public static void traslate() throws IOException{
 		File archivo_in = new File(result_file);
 		FileReader fr = new FileReader(archivo_in);
