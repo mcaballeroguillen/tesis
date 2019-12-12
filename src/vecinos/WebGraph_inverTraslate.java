@@ -55,7 +55,11 @@ public static void transform() throws IOException{
 		String id1= ids[0];
 		String id2= ids[1];
 		if(check_cont(id1) & check_cont(id2)){
-			String newline = dic_entytis.get(id1)+ "##"+dic_entytis.get(id2) +"," + value;
+			String ent1= dic_entytis.get(id1);
+			ent1 = ent1.split("/")[4];
+			String ent2= dic_entytis.get(id2);
+			ent2= ent2.split("/")[4];
+			String newline = ent1+ "##"+ent2 +"," + value;
 			pw.println(newline);
 		}
 		
