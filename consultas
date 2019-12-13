@@ -64,7 +64,7 @@ dcc
 /home/mcaballero/pruebas/universidades/interseption3/part-00000
 /home/mcaballero/pruebas/universidades/interseption3/part-00001
 
-java -jar -Xms5G contador.jar /home/mcaballero/pruebas/peliculas/reduce/interseption3_500/union  /home/mcaballero/pruebas/peliculas/reduce/interseption_500/union  /home/mcaballero/pruebas/peliculas/reduce &> salida_contador
+java -jar -Xms5G contador.jar /home/mcaballero/pruebas/paises/subgrafo/interseption3_64/union  /home/mcaballero/pruebas/paises/subgrafo/interseption_64/union  /home/mcaballero/pruebas/paises/subgrafo &> salida_contador
 
 java -jar -Xms15G normal_500.jar /home/mcaballero/datos/wikidata-20190731-truthy.nt.gz /home/mcaballero/pruebas/paises/subgrafo "<http://www.wikidata.org/entity/Q482994>" 0 &> salidasss
 
@@ -87,8 +87,7 @@ CountNeightbor_1 contador = new CountNeightbor_1(args[1]);
 contador.count();
 			
 Rank1			
-/home/mcaballero/pruebas/peliculas/result_probalistic_500/rank_Q184843.txt
-/home/mcaballero/pruebas/peliculas/result_probalistic_500/
+/home/mcaballero/pruebas/paises/subgrafo/result_probalistic_500/union
 Rank2
 /home/mcaballero/pruebas/peliculas/interseption3_64/rank_Q184843.txt
 /home/mcaballero/pruebas/peliculas/interseption3_64/
@@ -97,7 +96,7 @@ Rank1.2
 /home/mcaballero/pruebas/paises/subgrafo/result_norm_500/
 
 Ramk 2.2:
-/home/mcaballero/pruebas/simcoseno/rank_Q44578.txt
+/home/mcaballero/pruebas/paises/subgrafo/incluidos/union
 /home/mcaballero/pruebas/simcoseno/
 
 Rank 2.3:
@@ -159,10 +158,10 @@ Extrac_ local:
 /home/mcaballero/pruebas/peliculas/result_probalistic_500/union 1  /home/mcaballero/pruebas/peliculas/result_probalistic_500  1 Q80959
 
 WebGraph:
-/home/mcaballero/pruebas/paises/result10_1000.txt /home/mcaballero/pruebas/paises
+/home/mcaballero/pruebas/peliculas/result50_1000.txt /home/mcaballero/pruebas/peliculas
 
 SimRank:
-/home/mcaballero/pruebas/paises/webgraph.txt /home/mcaballero/pruebas/paises/entetys.txt /home/mcaballero/pruebas/paises
+/home/mcaballero/pruebas/peliculas/webgraph.txt /home/mcaballero/pruebas/peliculas/entetys.txt /home/mcaballero/pruebas/peliculas
 
 Reduce Extract:
 /home/mcaballero/pruebas/paises/result.txt /home/mcaballero/pruebas/paises/ 10 1000
