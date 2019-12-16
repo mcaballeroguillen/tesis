@@ -64,9 +64,9 @@ dcc
 /home/mcaballero/pruebas/universidades/interseption3/part-00000
 /home/mcaballero/pruebas/universidades/interseption3/part-00001
 
-java -jar -Xms5G contador.jar /home/mcaballero/pruebas/paises/subgrafo/interseption3_64/union  /home/mcaballero/pruebas/paises/subgrafo/interseption_64/union  /home/mcaballero/pruebas/paises/subgrafo &> salida_contador
+java -jar -Xms5G contador.jar /home/mcaballero/pruebas/peliculas/subgrafo/interseption3_64/union  /home/mcaballero/pruebas/peliculas/subgrafo/interseption_64/union  /home/mcaballero/pruebas/peliculas/subgrafo &> salida_contador
 
-java -jar -Xms15G normal_500.jar /home/mcaballero/datos/wikidata-20190731-truthy.nt.gz /home/mcaballero/pruebas/paises/subgrafo "<http://www.wikidata.org/entity/Q482994>" 0 &> salidasss
+java -jar -Xms15G normal_500.jar /home/mcaballero/datos/wikidata-20190731-truthy.nt.gz /home/mcaballero/pruebas/peliculas/subgrafo "<http://www.wikidata.org/entity/Q482994>" 0 &> salidasss
 
 
 java -jar -Xms13G -XX:-UseGCOverheadLimit  tesis_v4.jar /home/mcaballero/datos/wikidata-20190704-truthy-BETA.nt.gz /home/mcaballero/pruebas/resotarms "<http://www.wikidata.org/entity/Q18509232>" 0 &> salida.txt
@@ -87,21 +87,22 @@ CountNeightbor_1 contador = new CountNeightbor_1(args[1]);
 contador.count();
 			
 Rank1			
-/home/mcaballero/pruebas/paises/subgrafo/result_probalistic_500/union
+/home/mcaballero/pruebas/peliculas/subgrafo/result_probalistic_500/union
+/home/mcaballero/pruebas/peliculas/subgrafo/result_probalistic_500/
 Rank2
 /home/mcaballero/pruebas/peliculas/interseption3_64/rank_Q184843.txt
 /home/mcaballero/pruebas/peliculas/interseption3_64/
 Rank1.2
-/home/mcaballero/pruebas/paises/subgrafo/result_norm_500/union
-/home/mcaballero/pruebas/paises/subgrafo/result_norm_500/
+/home/mcaballero/pruebas/peliculas/subgrafo/result_norm_500/union
+/home/mcaballero/pruebas/peliculas/subgrafo/result_norm_500/
 
 Ramk 2.2:
-/home/mcaballero/pruebas/paises/subgrafo/incluidos/union
-/home/mcaballero/pruebas/simcoseno/
+/home/mcaballero/pruebas/peliculas/subgrafo/incluidos/union
+/home/mcaballero/pruebas/peliculas/subgrafo/incluidos
 
 Rank 2.3:
-/home/mcaballero/pruebas/paises/simrank_sort/union
-/home/mcaballero/pruebas/paises/simrank_sort/
+/home/mcaballero/pruebas/peliculas/simrank_sort/union
+/home/mcaballero/pruebas/peliculas/simrank_sort/
 
 /home/mcaballero/pruebas/peliculas/result_probalistic_500/rank1.txt
 /home/mcaballero/pruebas/peliculas/interseption3_64/rank2.txt
@@ -167,7 +168,7 @@ Reduce Extract:
 /home/mcaballero/pruebas/paises/result.txt /home/mcaballero/pruebas/paises/ 10 1000
 
 WebGraph inver:
-/home/mcaballero/pruebas/paises/simrank.txt /home/mcaballero/pruebas/paises/entitys_filter.txt  /home/mcaballero/pruebas/paises
+/home/mcaballero/pruebas/peliculas/simrank.txt /home/mcaballero/pruebas/peliculas/entitys_filter.txt  /home/mcaballero/pruebas/peliculas
 
 filter_entitys:
-/home/mcaballero/pruebas/paises/base.csv /home/mcaballero/pruebas/paises/entetys.txt /home/mcaballero/pruebas/paises
+/home/mcaballero/pruebas/peliculas/base.csv /home/mcaballero/pruebas/peliculas/entetys.txt /home/mcaballero/pruebas/peliculas
