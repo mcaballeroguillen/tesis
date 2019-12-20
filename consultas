@@ -64,14 +64,14 @@ dcc
 /home/mcaballero/pruebas/universidades/interseption3/part-00000
 /home/mcaballero/pruebas/universidades/interseption3/part-00001
 
-java -jar -Xms5G contador.jar /home/mcaballero/pruebas/peliculas/subgrafo/interseption3_64/union  /home/mcaballero/pruebas/peliculas/subgrafo/interseption_64/union  /home/mcaballero/pruebas/peliculas/subgrafo &> salida_contador
+java -jar -Xms5G contador.jar /home/mcaballero/pruebas/modelos_autos/subgrafo/interseption3_64/union  /home/mcaballero/pruebas/modelos_autos/subgrafo/interseption_64/union  /home/mcaballero/pruebas/modelos_autos/subgrafo &> salida_contador
 
-java -jar -Xms15G normal_500.jar /home/mcaballero/datos/wikidata-20190731-truthy.nt.gz /home/mcaballero/pruebas/peliculas/subgrafo "<http://www.wikidata.org/entity/Q482994>" 0 &> salidasss
+java -jar -Xms15G normal_500.jar /home/mcaballero/datos/wikidata-20190731-truthy.nt.gz /home/mcaballero/pruebas/modelos_autos/subgrafo "<http://www.wikidata.org/entity/Q482994>" 0 &> salidasss
 
 
 java -jar -Xms13G -XX:-UseGCOverheadLimit  tesis_v4.jar /home/mcaballero/datos/wikidata-20190704-truthy-BETA.nt.gz /home/mcaballero/pruebas/resotarms "<http://www.wikidata.org/entity/Q18509232>" 0 &> salida.txt
 
-/home/mcaballero/pruebas/peliculas/result.txt /home/mcaballero/pruebas/peliculas 5 10
+/home/mcaballero/pruebas/music/result.txt /home/mcaballero/pruebas/music 5 10000
 
 main de los estractores:
 
@@ -87,22 +87,22 @@ CountNeightbor_1 contador = new CountNeightbor_1(args[1]);
 contador.count();
 			
 Rank1			
-/home/mcaballero/pruebas/peliculas/subgrafo/result_probalistic_500/union
-/home/mcaballero/pruebas/peliculas/subgrafo/result_probalistic_500/
+/home/mcaballero/pruebas/modelos_autos/subgrafo/result_probalistic_500/union
+/home/mcaballero/pruebas/modelos_autos/subgrafo/result_probalistic_500/
 Rank2
 /home/mcaballero/pruebas/peliculas/interseption3_64/rank_Q184843.txt
 /home/mcaballero/pruebas/peliculas/interseption3_64/
 Rank1.2
-/home/mcaballero/pruebas/peliculas/subgrafo/result_norm_500/union
-/home/mcaballero/pruebas/peliculas/subgrafo/result_norm_500/
+/home/mcaballero/pruebas/modelos_autos/subgrafo/result_norm_500/union
+/home/mcaballero/pruebas/modelos_autos/subgrafo/result_norm_500/
 
 Ramk 2.2:
-/home/mcaballero/pruebas/peliculas/subgrafo/incluidos/union
-/home/mcaballero/pruebas/peliculas/subgrafo/incluidos
+/home/mcaballero/pruebas/modelos_autos/subgrafo/incluidos/union
+/home/mcaballero/pruebas/modelos_autos/subgrafo/incluidos
 
 Rank 2.3:
-/home/mcaballero/pruebas/peliculas/simrank_sort/union
-/home/mcaballero/pruebas/peliculas/simrank_sort/
+/home/mcaballero/pruebas/modelos_autos/simrank_sort/union
+/home/mcaballero/pruebas/modelos_autos/simrank_sort/
 
 /home/mcaballero/pruebas/peliculas/result_probalistic_500/rank1.txt
 /home/mcaballero/pruebas/peliculas/interseption3_64/rank2.txt
@@ -159,16 +159,16 @@ Extrac_ local:
 /home/mcaballero/pruebas/peliculas/result_probalistic_500/union 1  /home/mcaballero/pruebas/peliculas/result_probalistic_500  1 Q80959
 
 WebGraph:
-/home/mcaballero/pruebas/peliculas/result50_1000.txt /home/mcaballero/pruebas/peliculas
+/home/mcaballero/pruebas/music/result150_1000.txt /home/mcaballero/pruebas/music
 
 SimRank:
-/home/mcaballero/pruebas/peliculas/webgraph.txt /home/mcaballero/pruebas/peliculas/entetys.txt /home/mcaballero/pruebas/peliculas
+/home/mcaballero/pruebas/music/webgraph.txt /home/mcaballero/pruebas/music/entetys.txt /home/mcaballero/pruebas/music
 
 Reduce Extract:
 /home/mcaballero/pruebas/paises/result.txt /home/mcaballero/pruebas/paises/ 10 1000
 
 WebGraph inver:
-/home/mcaballero/pruebas/peliculas/simrank.txt /home/mcaballero/pruebas/peliculas/entitys_filter.txt  /home/mcaballero/pruebas/peliculas
+/home/mcaballero/pruebas/modelos_autos/simrank.txt /home/mcaballero/pruebas/modelos_autos/entitys_filter.txt  /home/mcaballero/pruebas/modelos_autos
 
 filter_entitys:
-/home/mcaballero/pruebas/peliculas/base.csv /home/mcaballero/pruebas/peliculas/entetys.txt /home/mcaballero/pruebas/peliculas
+/home/mcaballero/pruebas/modelos_autos/base.csv /home/mcaballero/pruebas/modelos_autos/entetys.txt /home/mcaballero/pruebas/modelos_autos
